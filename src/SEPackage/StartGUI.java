@@ -44,19 +44,7 @@ public class StartGUI extends javax.swing.JFrame {
         DatabaseConnection db;
     public StartGUI() throws IOException {
         initComponents();
-        Panel_Buttons.setVisible(false);
-        ScrollPane.setOpaque(false);
-        ScrollPane.getViewport().setOpaque(false);
-        row_col=new int[3][2];
-        ScrollPane.setOpaque(false);
-        ScrollPane.getViewport().setOpaque(false);
-        
-        setScrollPanel();
-        initLabels(label_player,row_col[0][0],row_col[0][1],"player");
-        //setOwnerScrollPanel();
-        //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
-        //setTeamScrollPanel();
-        //initLabels(label_team,row_col[2][0],row_col[2][1],"team");
+        initMyComponents();
         rs = null;
         db = new DatabaseConnection();
         rs = db.getPlayerStatistics("Sachin Tendulkar", "2008");
@@ -116,13 +104,6 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Image = new javax.swing.JLabel();
         Label_Name = new javax.swing.JLabel();
         Panel_Buttons = new javax.swing.JPanel();
-        Label_2008 = new javax.swing.JLabel();
-        Label_2009 = new javax.swing.JLabel();
-        Label_2010 = new javax.swing.JLabel();
-        Label_2011 = new javax.swing.JLabel();
-        Label_2012 = new javax.swing.JLabel();
-        Label_2013 = new javax.swing.JLabel();
-        Label_2014 = new javax.swing.JLabel();
         Label_Buttons = new javax.swing.JLabel();
         Panel_Statistics = new javax.swing.JPanel();
         Bg = new javax.swing.JLabel();
@@ -198,8 +179,9 @@ public class StartGUI extends javax.swing.JFrame {
                 .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -211,7 +193,7 @@ public class StartGUI extends javax.swing.JFrame {
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
                         .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Nationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -219,31 +201,21 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 530, 140));
 
         Panel_Buttons.setOpaque(false);
-        Panel_Buttons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Label_2008.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2008, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 40));
-
-        Label_2009.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2009, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 100, 40));
-
-        Label_2010.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2010, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 90, 40));
-
-        Label_2011.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2011, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 100, 40));
-
-        Label_2012.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2012, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 100, 40));
-
-        Label_2013.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2013, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 90, 40));
-
-        Label_2014.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Panel_Buttons.add(Label_2014, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 100, 40));
 
         Label_Buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/buttons copy.png"))); // NOI18N
-        Panel_Buttons.add(Label_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
+
+        javax.swing.GroupLayout Panel_ButtonsLayout = new javax.swing.GroupLayout(Panel_Buttons);
+        Panel_Buttons.setLayout(Panel_ButtonsLayout);
+        Panel_ButtonsLayout.setHorizontalGroup(
+            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Label_Buttons))
+        );
+        Panel_ButtonsLayout.setVerticalGroup(
+            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Label_Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 730, 40));
 
@@ -342,13 +314,6 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JLabel B_Players;
     private javax.swing.JLabel B_Teams;
     private javax.swing.JLabel Bg;
-    private javax.swing.JLabel Label_2008;
-    private javax.swing.JLabel Label_2009;
-    private javax.swing.JLabel Label_2010;
-    private javax.swing.JLabel Label_2011;
-    private javax.swing.JLabel Label_2012;
-    private javax.swing.JLabel Label_2013;
-    private javax.swing.JLabel Label_2014;
     private javax.swing.JLabel Label_Buttons;
     private javax.swing.JLabel Label_Close;
     private javax.swing.JLabel Label_Image;
@@ -362,71 +327,50 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Statistics;
     private javax.swing.JScrollPane ScrollPane;
     // End of variables declaration//GEN-END:variables
-    private RoundedLabel label_player[][];
+    private JLabel label_player[][];
     private JLabel label_owner[][];
     private JLabel label_team[][];
+    private JLabel button_years[];
     private String player_position[][];
     private String owner_position[][];
     private String team_position[][];
     ArrayList<String> lists;
     private int row_col[][];//0-player,1-owner,2-team
     
-    private void setScrollPanel() throws IOException {
-        final File folder = new File(".\\Images\\");
-        lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
-        int col=3,row=(lists.size()/col)+1;
-        row_col[0][0]=row;
-        row_col[0][1]=col;
-        //Panel_List=new JPanel(new GridLayout(0,5));
-        label_player=new RoundedLabel[row][col];
-        player_position=new String[row][col];
-        System.out.println(len);
+    private void initMyComponents() throws IOException {
+        int i;
+        Panel_Buttons.setVisible(false);
+        ScrollPane.setOpaque(false);
+        ScrollPane.getViewport().setOpaque(false);
+        row_col=new int[3][2];
+        ScrollPane.setOpaque(false);
+        ScrollPane.getViewport().setOpaque(false);
         
-        Panel_List.setPreferredSize(new Dimension(376, 100*row));
-        
-        for(int i=0;i<row&&count<len;i++)
+        setScrollPanel();
+        initLabels(label_player,row_col[0][0],row_col[0][1],"player");
+        //setOwnerScrollPanel();
+        //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
+        //setTeamScrollPanel();
+        //initLabels(label_team,row_col[2][0],row_col[2][1],"team");
+        button_years=new JLabel[7];
+        for(i=0;i<7;i++)
         {
-            for(int j=0;j<col&&count<len;j++,count++)
-            {
-                BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images\\"+lists.get(count)));
-                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(dimg);
-                int posx,posy;
-                if(j==0)
-                    posx=20;
-                else
-                    posx=label_player[i][j-1].getX()+padd_hor;
-                if(i==0)
-                    posy=20;
-                else
-                    posy=label_player[i-1][j].getY()+padd_ver;
-                
-                
-                label_player[i][j] = new RoundedLabel(posx,posy,60,60,img);
-                label_player[i][j].setBounds(posx,posy,50,50);
-                
-                //label_player[i][j].setIcon(icon);
-                player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
-                
-                JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+62,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-                name.setForeground(Color.BLACK);
-                
-                Panel_List.add(name);
-                Panel_List.add(label_player[i][j]);
-                Panel_List.repaint();
-                revalidate();
-                }
-                if(count>=len)
-                break;
-            }
-            ScrollPane.updateUI();
-            ScrollPane.setVisible(true);
-            Panel_List.updateUI();
-            Panel_List.setVisible(true);
+            final int i_=i;
+            button_years[i]=new JLabel();
+            button_years[i].setBounds(i*100+10, 0, 100, 40);
+            button_years[i].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            Panel_Buttons.add(button_years[i]);
+            button_years[i].addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        try {
+                            button_yearsMouseClicked(evt,i_);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+        }
     }
 
     private void initLabels(JLabel label[][],int row,int col,String type) {
@@ -502,7 +446,6 @@ public class StartGUI extends javax.swing.JFrame {
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) {
         
     }
-    
     private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException {
         Panel_Statistics.removeAll();
         i+=2008;
@@ -594,3 +537,4 @@ public class StartGUI extends javax.swing.JFrame {
         
     }
 }
+
