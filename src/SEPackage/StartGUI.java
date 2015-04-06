@@ -8,8 +8,11 @@ package SEPackage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +41,13 @@ public class StartGUI extends javax.swing.JFrame {
      */
     public StartGUI() throws IOException {
         initComponents();
-        setPlayerScrollPanel();
+        row_col=new int[3][2];
+        setScrollPanel();
+        //initLabels(label_player,row_col[0][0],row_col[0][1],"player");
+        //setOwnerScrollPanel();
+        //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
+        //setTeamScrollPanel();
+        //initLabels(label_team,row_col[2][0],row_col[2][1],"team");
         
 
 
@@ -89,98 +98,50 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_Main = new javax.swing.JPanel();
-        TP = new javax.swing.JTabbedPane();
-        ScrollPane_Player = new javax.swing.JScrollPane();
-        Panel_Player = new javax.swing.JPanel();
-        ScrollPane_Owner = new javax.swing.JScrollPane();
-        Panel_Owner = new javax.swing.JPanel();
-        ScrollPane_Team = new javax.swing.JScrollPane();
-        Panel_Team = new javax.swing.JPanel();
-        TF_Search = new javax.swing.JTextField();
-        B_Search = new javax.swing.JLabel();
-        Bg1 = new javax.swing.JLabel();
+        B_Players = new javax.swing.JLabel();
+        B_Teams = new javax.swing.JLabel();
+        B_Owners = new javax.swing.JLabel();
+        ScrollPane = new javax.swing.JScrollPane();
+        Panel_List = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1152, 730));
+        setResizable(false);
 
+        Panel_Main.setMinimumSize(new java.awt.Dimension(1152, 700));
+        Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 40));
+        Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 40));
+        Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 130, 40));
 
-        TP.setVerifyInputWhenFocusTarget(false);
-        TP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TPMouseClicked(evt);
-            }
-        });
+        ScrollPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ScrollPane.setAutoscrolls(true);
+        ScrollPane.setOpaque(false);
 
-        ScrollPane_Player.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ScrollPane_PlayerMouseClicked(evt);
-            }
-        });
+        Panel_List.setOpaque(false);
 
-        javax.swing.GroupLayout Panel_PlayerLayout = new javax.swing.GroupLayout(Panel_Player);
-        Panel_Player.setLayout(Panel_PlayerLayout);
-        Panel_PlayerLayout.setHorizontalGroup(
-            Panel_PlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+        javax.swing.GroupLayout Panel_ListLayout = new javax.swing.GroupLayout(Panel_List);
+        Panel_List.setLayout(Panel_ListLayout);
+        Panel_ListLayout.setHorizontalGroup(
+            Panel_ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
-        Panel_PlayerLayout.setVerticalGroup(
-            Panel_PlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+        Panel_ListLayout.setVerticalGroup(
+            Panel_ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
         );
 
-        ScrollPane_Player.setViewportView(Panel_Player);
+        ScrollPane.setViewportView(Panel_List);
 
-        TP.addTab("        Player        ", ScrollPane_Player);
+        Panel_Main.add(ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
+        Panel_Main.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 150, 160));
 
-        javax.swing.GroupLayout Panel_OwnerLayout = new javax.swing.GroupLayout(Panel_Owner);
-        Panel_Owner.setLayout(Panel_OwnerLayout);
-        Panel_OwnerLayout.setHorizontalGroup(
-            Panel_OwnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
-        );
-        Panel_OwnerLayout.setVerticalGroup(
-            Panel_OwnerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
-        );
-
-        ScrollPane_Owner.setViewportView(Panel_Owner);
-
-        TP.addTab("           Owner          ", ScrollPane_Owner);
-
-        javax.swing.GroupLayout Panel_TeamLayout = new javax.swing.GroupLayout(Panel_Team);
-        Panel_Team.setLayout(Panel_TeamLayout);
-        Panel_TeamLayout.setHorizontalGroup(
-            Panel_TeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
-        );
-        Panel_TeamLayout.setVerticalGroup(
-            Panel_TeamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
-        );
-
-        ScrollPane_Team.setViewportView(Panel_Team);
-
-        TP.addTab("           Team          ", ScrollPane_Team);
-
-        Panel_Main.add(TP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 36, 300, 517));
-
-        TF_Search.setText("Search..");
-        TF_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_SearchActionPerformed(evt);
-            }
-        });
-        Panel_Main.add(TF_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 251, 30));
-
-        B_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/search.png"))); // NOI18N
-        Panel_Main.add(B_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 0, -1, 30));
-
-        Bg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl-2015-background.jpg"))); // NOI18N
-        Panel_Main.add(Bg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, -6, 850, 560));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/Bg_2.png"))); // NOI18N
-        Panel_Main.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 560));
+        Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy.jpg"))); // NOI18N
+        Bg.setAlignmentY(0.0F);
+        Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1152, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,16 +151,12 @@ public class StartGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(Panel_Main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TF_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_SearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_SearchActionPerformed
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -213,14 +170,6 @@ public class StartGUI extends javax.swing.JFrame {
         return lists;
 }
     
-    private void TPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TPMouseClicked
-        
-    }//GEN-LAST:event_TPMouseClicked
-
-    private void ScrollPane_PlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollPane_PlayerMouseClicked
-
-    }//GEN-LAST:event_ScrollPane_PlayerMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -261,79 +210,114 @@ public class StartGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel B_Search;
-    private javax.swing.JLabel Bg1;
-    private javax.swing.JLayeredPane LayeredPane_Owner;
-    private javax.swing.JLayeredPane LayeredPane_Owner1;
-    private javax.swing.JLayeredPane LayeredPane_Owner2;
-    private javax.swing.JLayeredPane LayeredPane_Player;
-    private javax.swing.JLayeredPane LayeredPane_Player1;
-    private javax.swing.JLayeredPane LayeredPane_Player2;
-    private javax.swing.JLayeredPane LayeredPane_Team;
-    private javax.swing.JLayeredPane LayeredPane_Team1;
-    private javax.swing.JLayeredPane LayeredPane_Team2;
+    private javax.swing.JLabel B_Owners;
+    private javax.swing.JLabel B_Players;
+    private javax.swing.JLabel B_Teams;
+    private javax.swing.JLabel Bg;
+    private javax.swing.JPanel Panel_List;
     private javax.swing.JPanel Panel_Main;
-    private javax.swing.JPanel Panel_Owner;
-    private javax.swing.JPanel Panel_Player;
-    private javax.swing.JPanel Panel_Start;
-    private javax.swing.JPanel Panel_Start1;
-    private javax.swing.JPanel Panel_Start2;
-    private javax.swing.JPanel Panel_Team;
-    private javax.swing.JScrollPane ScrollPane_Owner;
-    private javax.swing.JScrollPane ScrollPane_Player;
-    private javax.swing.JScrollPane ScrollPane_Team;
-    private javax.swing.JTextField TF_Search;
-    private javax.swing.JTabbedPane TP;
-    private javax.swing.JTabbedPane TabbedPane;
-    private javax.swing.JTabbedPane TabbedPane1;
-    private javax.swing.JTabbedPane TabbedPane2;
-    private javax.swing.JTextField TextField_Search;
-    private javax.swing.JTextField TextField_Search1;
-    private javax.swing.JTextField TextField_Search2;
+    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-
-    private void setPlayerScrollPanel() throws IOException {
+    private JLabel label_player[][];
+    private JLabel label_owner[][];
+    private JLabel label_team[][];
+    private String player_position[][];
+    private String owner_position[][];
+    private String team_position[][];
+    private int row_col[][];//0-player,1-owner,2-team
+    private void setScrollPanel() throws IOException {
         final File folder = new File(".\\Images\\");
         ArrayList<String> lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=90,padd_ver=90;
+        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
         int col=3,row=(lists.size()/col)+1;
-        JLabel label[][]=new JLabel[row][col];
+        row_col[0][0]=row;
+        row_col[0][1]=col;
+        //Panel_List=new JPanel(new GridLayout(0,5));
+        label_player=new JLabel[row][col];
+        player_position=new String[row][col];
         System.out.println(len);
         for(int i=0;i<row&&count<len;i++)
         {
             for(int j=0;j<col&&count<len;j++,count++)
             {
                 BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images\\"+lists.get(i)));
-                Image dimg = img.getScaledInstance(50, 50,Image.SCALE_SMOOTH);
+                img = ImageIO.read(new File(".\\Images\\"+lists.get(count)));
+                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
-                label[i][j] = new JLabel();
+                label_player[i][j] = new JLabel();
                 int posx,posy;
                 if(j==0)
                     posx=20;
                 else
-                    posx=label[i][j-1].getX()+padd_hor;
+                    posx=label_player[i][j-1].getX()+padd_hor;
                 if(i==0)
                     posy=20;
                 else
-                    posy=label[i-1][j].getY()+padd_ver;
-                label[i][j].setBounds(posx,posy,50,50);
-                label[i][j].setIcon(icon);
-                JLabel name=new JLabel(lists.get(i),SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+52,70,15);
+                    posy=label_player[i-1][j].getY()+padd_ver;
+                label_player[i][j].setBounds(posx,posy,50,50);
+                label_player[i][j].setIcon(icon);
+                player_position[i][j]=lists.get(i).substring(0,lists.get(i).length()-4);
+                JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
+                name.setBounds(posx-10,posy+52,80,20);
                 name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                 name.setForeground(Color.BLACK);
-                Panel_Player.add(name);
-                Panel_Player.add(label[i][j]);
+                Panel_List.add(name);
+                Panel_List.add(label_player[i][j]);
 
                 }
                 if(count>=len)
                 break;
             }
-            ScrollPane_Player.updateUI();
-            ScrollPane_Player.setVisible(true);
-            Panel_Player.updateUI();
-            Panel_Player.setVisible(true);
+            ScrollPane.updateUI();
+            ScrollPane.setVisible(true);
+            Panel_List.updateUI();
+            Panel_List.setVisible(true);
+    }
+
+    private void initLabels(JLabel label[][],int row,int col,String type) {
+        //label_player,label_owner,label_team
+        int i,j;
+        final String option=type;
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                final int i_=i;
+                final int j_=j;
+                label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    if(option.equalsIgnoreCase("player"))
+                    {
+                        label_playerMouseClicked(evt,i_,j_);
+                    }
+                    else if(option.equalsIgnoreCase("owner"))
+                    {
+                        label_ownerMouseClicked(evt,i_,j_);
+                    }
+                    else
+                        label_teamMouseClicked(evt,i_,j_);
+            }
+            });
+            }
+        }
+    }
+    
+    private void setTeamScrollPanel() {
+
+    }
+
+    private void setOwnerScrollPanel() {
+        
+    }
+    
+    private void label_playerMouseClicked(MouseEvent evt, int i, int j) {
+        
+    }
+    private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
+        
+    }
+    private void label_teamMouseClicked(MouseEvent evt, int i, int j) {
+        
     }
 }
