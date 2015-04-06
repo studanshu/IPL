@@ -56,4 +56,22 @@ public class DatabaseConnection {
         }
         return resultSet;
     }
+    
+    public ResultSet getPlayerDetails(String name){
+        try{
+            resultSet = statement.executeQuery("select * from Person natural join Player where name=\""+name+"\";");
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
+    
+    public ResultSet getPlayerTeam(String name,String year){
+        try{
+            resultSet = statement.executeQuery("select * from Person natural join TeamPlayer where name=\""+name+"\" and year="+year+";");
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
 }
