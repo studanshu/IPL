@@ -410,7 +410,6 @@ public class StartGUI extends javax.swing.JFrame {
                 //label_player[i][j].setIcon(icon);
                 player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
                 
-                
                 JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx-10,posy+62,80,20);
                 name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
