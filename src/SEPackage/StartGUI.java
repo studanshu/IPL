@@ -171,7 +171,7 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TPMouseClicked
 
     private void ScrollPane_PlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollPane_PlayerMouseClicked
-        final File folder = new File("C:\\Users\\Sudhanshu's\\Pictures\\");
+        final File folder = new File(".\\Images\\");
         ArrayList<String> lists=listFilesForFolder(folder);
         int len=lists.size(),count=0,padd_hor=90,padd_ver=90;
         int col=3,row=(lists.size()/col)+1;
@@ -181,7 +181,7 @@ public class StartGUI extends javax.swing.JFrame {
         {
             for(int j=0;j<col&&count<len;j++,count++)
             {
-                ImageIcon icon = new ImageIcon(new File("C:\\Users\\Sudhanshu's\\Pictures\\"+lists.get(count)).getAbsolutePath()); 
+                ImageIcon icon = new ImageIcon(new File(".\\Images\\"+lists.get(count)).getAbsolutePath()); 
                 label[i][j] = new JLabel();
                 int posx,posy;
                 if(j==0)
