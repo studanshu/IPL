@@ -362,7 +362,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Statistics;
     private javax.swing.JScrollPane ScrollPane;
     // End of variables declaration//GEN-END:variables
-    private JLabel label_player[][];
+    private RoundedLabel label_player[][];
     private JLabel label_owner[][];
     private JLabel label_team[][];
     private String player_position[][];
@@ -379,7 +379,7 @@ public class StartGUI extends javax.swing.JFrame {
         row_col[0][0]=row;
         row_col[0][1]=col;
         //Panel_List=new JPanel(new GridLayout(0,5));
-        label_player=new JLabel[row][col];
+        label_player=new RoundedLabel[row][col];
         player_position=new String[row][col];
         System.out.println(len);
         
@@ -393,7 +393,6 @@ public class StartGUI extends javax.swing.JFrame {
                 img = ImageIO.read(new File(".\\Images\\"+lists.get(count)));
                 Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
-                label_player[i][j] = new JLabel();
                 int posx,posy;
                 if(j==0)
                     posx=20;
@@ -403,11 +402,17 @@ public class StartGUI extends javax.swing.JFrame {
                     posy=20;
                 else
                     posy=label_player[i-1][j].getY()+padd_ver;
+                
+                
+                label_player[i][j] = new RoundedLabel(posx,posy,60,60,img);
                 label_player[i][j].setBounds(posx,posy,50,50);
-                label_player[i][j].setIcon(icon);
+                
+                //label_player[i][j].setIcon(icon);
                 player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                
+                
                 JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+52,80,20);
+                name.setBounds(posx-10,posy+62,80,20);
                 name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                 name.setForeground(Color.BLACK);
                 
