@@ -9,8 +9,14 @@ package SEPackage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -28,8 +34,9 @@ public class StartGUI extends javax.swing.JFrame {
     /**
      * Creates new form StartGUI
      */
-    public StartGUI() {
+    public StartGUI() throws IOException {
         initComponents();
+        setPlayerScrollPanel();
     }
 
     /**
@@ -171,42 +178,7 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TPMouseClicked
 
     private void ScrollPane_PlayerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ScrollPane_PlayerMouseClicked
-        final File folder = new File(".\\Images\\");
-        ArrayList<String> lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=90,padd_ver=90;
-        int col=3,row=(lists.size()/col)+1;
-        JLabel label[][]=new JLabel[row][col];
-        System.out.println(len);
-        for(int i=0;i<row&&count<len;i++)
-        {
-            for(int j=0;j<col&&count<len;j++,count++)
-            {
-                ImageIcon icon = new ImageIcon(new File(".\\Images\\"+lists.get(count)).getAbsolutePath()); 
-                label[i][j] = new JLabel();
-                int posx,posy;
-                if(j==0)
-                    posx=20;
-                else
-                    posx=label[i][j-1].getX()+padd_hor;
-                if(i==0)
-                    posy=20;
-                else
-                    posy=label[i-1][j].getY()+padd_ver;
-                label[i][j].setBounds(posx,posy,50,50);
-                label[i][j].setIcon(icon);
-                JLabel name=new JLabel(lists.get(i),SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+52,70,15);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-                name.setForeground(Color.BLACK);
-                Panel_Player.add(name);
-                Panel_Player.add(label[i][j]);
 
-                }
-                if(count>=len)
-                break;
-            }
-            ScrollPane_Player.setVisible(true);
-            Panel_Player.setVisible(true);
     }//GEN-LAST:event_ScrollPane_PlayerMouseClicked
 
     /**
@@ -239,7 +211,11 @@ public class StartGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartGUI().setVisible(true);
+                try {
+                    new StartGUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -276,4 +252,48 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JTextField TextField_Search2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    private void setPlayerScrollPanel() throws IOException {
+        final File folder = new File(".\\Images\\");
+        ArrayList<String> lists=listFilesForFolder(folder);
+        int len=lists.size(),count=0,padd_hor=90,padd_ver=90;
+        int col=3,row=(lists.size()/col)+1;
+        JLabel label[][]=new JLabel[row][col];
+        System.out.println(len);
+        for(int i=0;i<row&&count<len;i++)
+        {
+            for(int j=0;j<col&&count<len;j++,count++)
+            {
+                BufferedImage img = null;
+                img = ImageIO.read(new File(".\\Images\\"+lists.get(i)));
+                Image dimg = img.getScaledInstance(50, 50,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(dimg);
+                label[i][j] = new JLabel();
+                int posx,posy;
+                if(j==0)
+                    posx=20;
+                else
+                    posx=label[i][j-1].getX()+padd_hor;
+                if(i==0)
+                    posy=20;
+                else
+                    posy=label[i-1][j].getY()+padd_ver;
+                label[i][j].setBounds(posx,posy,50,50);
+                label[i][j].setIcon(icon);
+                JLabel name=new JLabel(lists.get(i),SwingConstants.CENTER);
+                name.setBounds(posx-10,posy+52,70,15);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setForeground(Color.BLACK);
+                Panel_Player.add(name);
+                Panel_Player.add(label[i][j]);
+
+                }
+                if(count>=len)
+                break;
+            }
+            ScrollPane_Player.updateUI();
+            ScrollPane_Player.setVisible(true);
+            Panel_Player.updateUI();
+            Panel_Player.setVisible(true);
+    }
 }
