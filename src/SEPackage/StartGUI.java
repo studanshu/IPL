@@ -42,6 +42,9 @@ public class StartGUI extends javax.swing.JFrame {
     public StartGUI() throws IOException {
         initComponents();
         row_col=new int[3][2];
+        ScrollPane.setOpaque(false);
+        ScrollPane.getViewport().setOpaque(false);
+        
         setScrollPanel();
         //initLabels(label_player,row_col[0][0],row_col[0][1],"player");
         //setOwnerScrollPanel();
@@ -117,11 +120,15 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 40));
         Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 130, 40));
 
-        ScrollPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ScrollPane.setBorder(null);
+        ScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ScrollPane.setToolTipText("");
         ScrollPane.setAutoscrolls(true);
         ScrollPane.setOpaque(false);
 
+        Panel_List.setBackground(new java.awt.Color(153, 153, 153));
         Panel_List.setOpaque(false);
+        Panel_List.setPreferredSize(new java.awt.Dimension(376, 512));
 
         javax.swing.GroupLayout Panel_ListLayout = new javax.swing.GroupLayout(Panel_List);
         Panel_List.setLayout(Panel_ListLayout);
@@ -131,7 +138,7 @@ public class StartGUI extends javax.swing.JFrame {
         );
         Panel_ListLayout.setVerticalGroup(
             Panel_ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
 
         ScrollPane.setViewportView(Panel_List);
@@ -226,6 +233,7 @@ public class StartGUI extends javax.swing.JFrame {
     private String owner_position[][];
     private String team_position[][];
     private int row_col[][];//0-player,1-owner,2-team
+    
     private void setScrollPanel() throws IOException {
         final File folder = new File(".\\Images\\");
         ArrayList<String> lists=listFilesForFolder(folder);
@@ -237,6 +245,9 @@ public class StartGUI extends javax.swing.JFrame {
         label_player=new JLabel[row][col];
         player_position=new String[row][col];
         System.out.println(len);
+        
+        Panel_List.setPreferredSize(new Dimension(376, 100*row));
+        
         for(int i=0;i<row&&count<len;i++)
         {
             for(int j=0;j<col&&count<len;j++,count++)
@@ -262,9 +273,11 @@ public class StartGUI extends javax.swing.JFrame {
                 name.setBounds(posx-10,posy+52,80,20);
                 name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                 name.setForeground(Color.BLACK);
+                
                 Panel_List.add(name);
                 Panel_List.add(label_player[i][j]);
-
+                Panel_List.repaint();
+                revalidate();
                 }
                 if(count>=len)
                 break;
