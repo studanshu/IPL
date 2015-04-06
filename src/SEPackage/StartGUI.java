@@ -124,6 +124,7 @@ public class StartGUI extends javax.swing.JFrame {
         Label_2013 = new javax.swing.JLabel();
         Label_2014 = new javax.swing.JLabel();
         Label_Buttons = new javax.swing.JLabel();
+        Panel_Statistics = new javax.swing.JPanel();
         Bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -246,6 +247,21 @@ public class StartGUI extends javax.swing.JFrame {
 
         Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 730, 40));
 
+        Panel_Statistics.setOpaque(false);
+
+        javax.swing.GroupLayout Panel_StatisticsLayout = new javax.swing.GroupLayout(Panel_Statistics);
+        Panel_Statistics.setLayout(Panel_StatisticsLayout);
+        Panel_StatisticsLayout.setHorizontalGroup(
+            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        Panel_StatisticsLayout.setVerticalGroup(
+            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+
+        Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 500, 290));
+
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy.jpg"))); // NOI18N
         Bg.setAlignmentY(0.0F);
         Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1152, 700));
@@ -343,6 +359,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_List;
     private javax.swing.JPanel Panel_Main;
     private javax.swing.JPanel Panel_Person;
+    private javax.swing.JPanel Panel_Statistics;
     private javax.swing.JScrollPane ScrollPane;
     // End of variables declaration//GEN-END:variables
     private JLabel label_player[][];
@@ -431,6 +448,8 @@ public class StartGUI extends javax.swing.JFrame {
                                 label_playerMouseClicked(evt,i_,j_);
                             } catch (IOException ex) {
                                 Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         else if(option.equalsIgnoreCase("owner"))
@@ -457,7 +476,7 @@ public class StartGUI extends javax.swing.JFrame {
         
     }
     
-    private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException {
+    private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         BufferedImage img = null;
         
         img = ImageIO.read(new File(".\\Images\\"+lists.get(i*3+j)));
@@ -465,11 +484,109 @@ public class StartGUI extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(player_position[i][j]);
         Label_Image.setIcon(icon);
+        rs=db.getPlayerDetails(player_position[i][j]);
+        //System.out.println(rs);
+        while(rs.next())
+        {
+            Label_Nationality.setText(rs.getString("nationality"));
+            Label_Sex.setText(rs.getString("sex"));
+        }
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
         
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) {
+        
+    }
+    
+    private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException {
+        Panel_Statistics.removeAll();
+        i+=2008;
+        rs=db.getPlayerStatistics(Label_Name.getText(),i+"");
+        int x=60,y=10,font=15,offset=0;
+        JLabel data;
+        while(rs.next()){
+                int runs = rs.getInt(4);
+                int wickets = rs.getInt(5);
+                int num_of_innings = rs.getInt(6);
+                float bat_strikerate = rs.getFloat(7);
+                float bowl_strikerate = rs.getFloat(8);
+                float batting_average = rs.getFloat(9);
+                float bowling_average = rs.getFloat(10);
+                float economy = rs.getFloat(11);
+                int number_of_fifties = rs.getInt(12);
+                int number_of_centuries = rs.getInt(13);
+                float base_price = rs.getFloat(14);
+                
+                data=new JLabel("Runs : "+Integer.toString(runs));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Wickets : "+Integer.toString(wickets));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Number of Innings : "+Integer.toString(num_of_innings));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Batting Strike rate : "+Float.toString(bat_strikerate));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Bowling Strike rate : "+Float.toString(bowl_strikerate));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Batting Average : "+Float.toString(batting_average));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Bowling Average : "+Float.toString(bowling_average));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Economy : "+Float.toString(economy));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Number of 50's : "+Integer.toString(number_of_fifties));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Number of 100's : "+Integer.toString(number_of_centuries));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,390,16);
+                offset+=40;
+                Panel_Statistics.add(data);
+                data=new JLabel("Base Price : "+Float.toString(base_price));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setBounds(x,y+offset,390,16);
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                offset+=40;
+                Panel_Statistics.add(data);
+            }
+        Panel_Statistics.updateUI();
+        Panel_Statistics.setVisible(true);
         
     }
 }
