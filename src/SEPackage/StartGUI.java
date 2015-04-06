@@ -109,11 +109,12 @@ public class StartGUI extends javax.swing.JFrame {
         B_Owners = new javax.swing.JLabel();
         ScrollPane = new javax.swing.JScrollPane();
         Panel_List = new javax.swing.JPanel();
+        Label_Close = new javax.swing.JLabel();
+        Panel_Person = new javax.swing.JPanel();
+        Label_Sex = new javax.swing.JLabel();
+        Label_Nationality = new javax.swing.JLabel();
         Label_Image = new javax.swing.JLabel();
         Label_Name = new javax.swing.JLabel();
-        Label_Nationality = new javax.swing.JLabel();
-        Label_Sex = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         Panel_Buttons = new javax.swing.JPanel();
         Label_2008 = new javax.swing.JLabel();
         Label_2009 = new javax.swing.JLabel();
@@ -122,18 +123,23 @@ public class StartGUI extends javax.swing.JFrame {
         Label_2012 = new javax.swing.JLabel();
         Label_2013 = new javax.swing.JLabel();
         Label_2014 = new javax.swing.JLabel();
-        Label_buttons = new javax.swing.JLabel();
+        Label_Buttons = new javax.swing.JLabel();
         Bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1152, 730));
         setResizable(false);
 
         Panel_Main.setMinimumSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        B_Players.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 40));
+
+        B_Teams.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 40));
+
+        B_Owners.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 130, 40));
 
         ScrollPane.setBorder(null);
@@ -160,77 +166,85 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane.setViewportView(Panel_List);
 
         Panel_Main.add(ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
-        Panel_Main.add(Label_Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 120, 140));
 
-        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
-        Panel_Main.add(Label_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 390, 50));
+        Label_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/Close.png"))); // NOI18N
+        Label_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Label_Close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Label_CloseMouseClicked(evt);
+            }
+        });
+        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 130, 32, 32));
 
-        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
-        Panel_Main.add(Label_Nationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 90, 20));
+        Panel_Person.setOpaque(false);
 
         Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
-        Panel_Main.add(Label_Sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 90, 20));
 
-        jLabel1.setText("jLabel1");
-        Panel_Main.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 140, -1, -1));
+        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
+
+        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
+
+        javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
+        Panel_Person.setLayout(Panel_PersonLayout);
+        Panel_PersonLayout.setHorizontalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        Panel_PersonLayout.setVerticalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 530, 140));
 
         Panel_Buttons.setOpaque(false);
+        Panel_Buttons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Label_buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/buttons copy.png"))); // NOI18N
+        Label_2008.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2008, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 40));
 
-        javax.swing.GroupLayout Panel_ButtonsLayout = new javax.swing.GroupLayout(Panel_Buttons);
-        Panel_Buttons.setLayout(Panel_ButtonsLayout);
-        Panel_ButtonsLayout.setHorizontalGroup(
-            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-            .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(210, 210, 210)
-                            .addComponent(Label_2010, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(310, 310, 310)
-                            .addComponent(Label_2011, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(Label_2008, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(620, 620, 620)
-                            .addComponent(Label_2014, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(110, 110, 110)
-                            .addComponent(Label_2009, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(410, 410, 410)
-                            .addComponent(Label_2012, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                            .addGap(520, 520, 520)
-                            .addComponent(Label_2013, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(Label_buttons))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        Panel_ButtonsLayout.setVerticalGroup(
-            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Panel_ButtonsLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Label_2010, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2011, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2008, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2014, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2009, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2012, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_2013, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Label_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        Label_2009.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2009, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 100, 40));
 
-        Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 720, 30));
+        Label_2010.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2010, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 90, 40));
+
+        Label_2011.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2011, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 100, 40));
+
+        Label_2012.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2012, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 100, 40));
+
+        Label_2013.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2013, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 90, 40));
+
+        Label_2014.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Panel_Buttons.add(Label_2014, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 100, 40));
+
+        Label_Buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/buttons copy.png"))); // NOI18N
+        Panel_Buttons.add(Label_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
+
+        Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 730, 40));
 
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy.jpg"))); // NOI18N
         Bg.setAlignmentY(0.0F);
@@ -250,6 +264,11 @@ public class StartGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Label_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Label_CloseMouseClicked
+        Panel_Person.setVisible(false);
+        Panel_Buttons.setVisible(false);
+    }//GEN-LAST:event_Label_CloseMouseClicked
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -314,16 +333,17 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Label_2012;
     private javax.swing.JLabel Label_2013;
     private javax.swing.JLabel Label_2014;
+    private javax.swing.JLabel Label_Buttons;
+    private javax.swing.JLabel Label_Close;
     private javax.swing.JLabel Label_Image;
     private javax.swing.JLabel Label_Name;
     private javax.swing.JLabel Label_Nationality;
     private javax.swing.JLabel Label_Sex;
-    private javax.swing.JLabel Label_buttons;
     private javax.swing.JPanel Panel_Buttons;
     private javax.swing.JPanel Panel_List;
     private javax.swing.JPanel Panel_Main;
+    private javax.swing.JPanel Panel_Person;
     private javax.swing.JScrollPane ScrollPane;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
     private JLabel label_player[][];
     private JLabel label_owner[][];
@@ -368,7 +388,7 @@ public class StartGUI extends javax.swing.JFrame {
                     posy=label_player[i-1][j].getY()+padd_ver;
                 label_player[i][j].setBounds(posx,posy,50,50);
                 label_player[i][j].setIcon(icon);
-                player_position[i][j]=lists.get(i).substring(0,lists.get(i).length()-4);
+                player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
                 JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx-10,posy+52,80,20);
                 name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
@@ -400,8 +420,11 @@ public class StartGUI extends javax.swing.JFrame {
                 final int i_=i;
                 final int j_=j;
                 try{
+                    label[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                     label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        Panel_Person.setVisible(true);
+                        Panel_Buttons.setVisible(true);
                         if(option.equalsIgnoreCase("player"))
                         {
                             try {
@@ -420,7 +443,7 @@ public class StartGUI extends javax.swing.JFrame {
                 });
                 } catch(Exception E)
                 {
-                    E.printStackTrace();
+                    //E.printStackTrace();
                 }
             }
         }
