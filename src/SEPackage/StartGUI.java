@@ -13,6 +13,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +39,44 @@ public class StartGUI extends javax.swing.JFrame {
     public StartGUI() throws IOException {
         initComponents();
         setPlayerScrollPanel();
+        
+
+
+        ResultSet rs = null;
+        DatabaseConnection db = new DatabaseConnection();
+        rs = db.getPlayerStatistics("Sachin Tendulkar", "2008");
+        try {
+            while(rs.next()){
+                String name = rs.getString("name");
+                int runs = rs.getInt(4);
+                int wickets = rs.getInt(5);
+                int num_of_innings = rs.getInt(6);
+                float bat_strikerate = rs.getFloat(7);
+                float bowl_strikerate = rs.getFloat(8);
+                float batting_average = rs.getFloat(9);
+                float bowling_average = rs.getFloat(10);
+                float economy = rs.getFloat(11);
+                int number_of_fifties = rs.getInt(12);
+                int number_of_centuries = rs.getInt(13);
+                float base_price = rs.getFloat(14);
+                
+                System.out.println("Person name : "+name);
+                System.out.println("Runs : "+Integer.toString(runs));
+                System.out.println("Wickets : "+Integer.toString(wickets));
+                System.out.println("Number of Innings : "+Integer.toString(num_of_innings));
+                System.out.println("Batting Strike rate : "+Float.toString(bat_strikerate));
+                System.out.println("Bowling Strike rate : "+Float.toString(bowl_strikerate));
+                System.out.println("Batting Average : "+Float.toString(batting_average));
+                System.out.println("Bowling Average : "+Float.toString(bowling_average));
+                System.out.println("Economy : "+Float.toString(economy));
+                System.out.println("Number of 50's : "+Integer.toString(number_of_fifties));
+                System.out.println("Number of 100's : "+Integer.toString(number_of_centuries));
+                System.out.println("Base Price : "+Float.toString(base_price));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
