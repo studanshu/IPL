@@ -39,23 +39,26 @@ public class StartGUI extends javax.swing.JFrame {
     /**
      * Creates new form StartGUI
      */
+    
+        ResultSet rs;
+        DatabaseConnection db;
     public StartGUI() throws IOException {
         initComponents();
+        Panel_Buttons.setVisible(false);
+        ScrollPane.setOpaque(false);
+        ScrollPane.getViewport().setOpaque(false);
         row_col=new int[3][2];
         ScrollPane.setOpaque(false);
         ScrollPane.getViewport().setOpaque(false);
         
         setScrollPanel();
-        //initLabels(label_player,row_col[0][0],row_col[0][1],"player");
+        initLabels(label_player,row_col[0][0],row_col[0][1],"player");
         //setOwnerScrollPanel();
         //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
         //setTeamScrollPanel();
         //initLabels(label_team,row_col[2][0],row_col[2][1],"team");
-        
-
-
-        ResultSet rs = null;
-        DatabaseConnection db = new DatabaseConnection();
+        rs = null;
+        db = new DatabaseConnection();
         rs = db.getPlayerStatistics("Sachin Tendulkar", "2008");
         try {
             while(rs.next()){
@@ -106,7 +109,20 @@ public class StartGUI extends javax.swing.JFrame {
         B_Owners = new javax.swing.JLabel();
         ScrollPane = new javax.swing.JScrollPane();
         Panel_List = new javax.swing.JPanel();
+        Label_Image = new javax.swing.JLabel();
+        Label_Name = new javax.swing.JLabel();
+        Label_Nationality = new javax.swing.JLabel();
+        Label_Sex = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Panel_Buttons = new javax.swing.JPanel();
+        Label_2008 = new javax.swing.JLabel();
+        Label_2009 = new javax.swing.JLabel();
+        Label_2010 = new javax.swing.JLabel();
+        Label_2011 = new javax.swing.JLabel();
+        Label_2012 = new javax.swing.JLabel();
+        Label_2013 = new javax.swing.JLabel();
+        Label_2014 = new javax.swing.JLabel();
+        Label_buttons = new javax.swing.JLabel();
         Bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,7 +160,77 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane.setViewportView(Panel_List);
 
         Panel_Main.add(ScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
-        Panel_Main.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 150, 160));
+        Panel_Main.add(Label_Image, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 120, 140));
+
+        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
+        Panel_Main.add(Label_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 390, 50));
+
+        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
+        Panel_Main.add(Label_Nationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 90, 20));
+
+        Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
+        Panel_Main.add(Label_Sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 90, 20));
+
+        jLabel1.setText("jLabel1");
+        Panel_Main.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 140, -1, -1));
+
+        Panel_Buttons.setOpaque(false);
+
+        Label_buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/buttons copy.png"))); // NOI18N
+
+        javax.swing.GroupLayout Panel_ButtonsLayout = new javax.swing.GroupLayout(Panel_Buttons);
+        Panel_Buttons.setLayout(Panel_ButtonsLayout);
+        Panel_ButtonsLayout.setHorizontalGroup(
+            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(210, 210, 210)
+                            .addComponent(Label_2010, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(310, 310, 310)
+                            .addComponent(Label_2011, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Label_2008, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(620, 620, 620)
+                            .addComponent(Label_2014, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(110, 110, 110)
+                            .addComponent(Label_2009, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(410, 410, 410)
+                            .addComponent(Label_2012, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                            .addGap(520, 520, 520)
+                            .addComponent(Label_2013, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Label_buttons))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        Panel_ButtonsLayout.setVerticalGroup(
+            Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Panel_ButtonsLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(Panel_ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Label_2010, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2011, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2008, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2014, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2009, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2012, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_2013, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 720, 30));
 
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy.jpg"))); // NOI18N
         Bg.setAlignmentY(0.0F);
@@ -221,6 +307,19 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JLabel B_Players;
     private javax.swing.JLabel B_Teams;
     private javax.swing.JLabel Bg;
+    private javax.swing.JLabel Label_2008;
+    private javax.swing.JLabel Label_2009;
+    private javax.swing.JLabel Label_2010;
+    private javax.swing.JLabel Label_2011;
+    private javax.swing.JLabel Label_2012;
+    private javax.swing.JLabel Label_2013;
+    private javax.swing.JLabel Label_2014;
+    private javax.swing.JLabel Label_Image;
+    private javax.swing.JLabel Label_Name;
+    private javax.swing.JLabel Label_Nationality;
+    private javax.swing.JLabel Label_Sex;
+    private javax.swing.JLabel Label_buttons;
+    private javax.swing.JPanel Panel_Buttons;
     private javax.swing.JPanel Panel_List;
     private javax.swing.JPanel Panel_Main;
     private javax.swing.JScrollPane ScrollPane;
@@ -232,11 +331,12 @@ public class StartGUI extends javax.swing.JFrame {
     private String player_position[][];
     private String owner_position[][];
     private String team_position[][];
+    ArrayList<String> lists;
     private int row_col[][];//0-player,1-owner,2-team
     
     private void setScrollPanel() throws IOException {
         final File folder = new File(".\\Images\\");
-        ArrayList<String> lists=listFilesForFolder(folder);
+        lists=listFilesForFolder(folder);
         int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
         int col=3,row=(lists.size()/col)+1;
         row_col[0][0]=row;
@@ -290,6 +390,7 @@ public class StartGUI extends javax.swing.JFrame {
 
     private void initLabels(JLabel label[][],int row,int col,String type) {
         //label_player,label_owner,label_team
+        System.out.println(label.length);
         int i,j;
         final String option=type;
         for(i=0;i<row;i++)
@@ -298,34 +399,49 @@ public class StartGUI extends javax.swing.JFrame {
             {
                 final int i_=i;
                 final int j_=j;
-                label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    if(option.equalsIgnoreCase("player"))
-                    {
-                        label_playerMouseClicked(evt,i_,j_);
-                    }
-                    else if(option.equalsIgnoreCase("owner"))
-                    {
-                        label_ownerMouseClicked(evt,i_,j_);
-                    }
-                    else
-                        label_teamMouseClicked(evt,i_,j_);
-            }
-            });
+                try{
+                    label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        if(option.equalsIgnoreCase("player"))
+                        {
+                            try {
+                                label_playerMouseClicked(evt,i_,j_);
+                            } catch (IOException ex) {
+                                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        else if(option.equalsIgnoreCase("owner"))
+                        {
+                            label_ownerMouseClicked(evt,i_,j_);
+                        }
+                        else
+                            label_teamMouseClicked(evt,i_,j_);
+                }
+                });
+                } catch(Exception E)
+                {
+                    E.printStackTrace();
+                }
             }
         }
     }
     
     private void setTeamScrollPanel() {
-
+        
     }
 
     private void setOwnerScrollPanel() {
         
     }
     
-    private void label_playerMouseClicked(MouseEvent evt, int i, int j) {
+    private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException {
+        BufferedImage img = null;
         
+        img = ImageIO.read(new File(".\\Images\\"+lists.get(i*3+j)));
+        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(dimg);
+        Label_Name.setText(player_position[i][j]);
+        Label_Image.setIcon(icon);
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
         
