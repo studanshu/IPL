@@ -256,6 +256,7 @@ public class StartGUI extends javax.swing.JFrame {
     private void Label_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Label_CloseMouseClicked
         Panel_Person.setVisible(false);
         Panel_Buttons.setVisible(false);
+        Panel_List.setVisible(false);
     }//GEN-LAST:event_Label_CloseMouseClicked
     
     public ArrayList<String> listFilesForFolder(final File folder) {
@@ -371,6 +372,64 @@ public class StartGUI extends javax.swing.JFrame {
                     }
                 });
         }
+    }
+    
+    private void setScrollPanel() throws IOException {
+        final File folder = new File(".\\Images\\");
+        lists=listFilesForFolder(folder);
+        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int col=3,row=(lists.size()/col)+1;
+        row_col[0][0]=row;
+        row_col[0][1]=col;
+        //Panel_List=new JPanel(new GridLayout(0,5));
+        label_player=new RoundedLabel[row][col];
+        player_position=new String[row][col];
+        System.out.println(len);
+        
+        Panel_List.setPreferredSize(new Dimension(376, 100*row));
+        
+        for(int i=0;i<row&&count<len;i++)
+        {
+            for(int j=0;j<col&&count<len;j++,count++)
+            {
+                BufferedImage img = null;
+                img = ImageIO.read(new File(".\\Images\\"+lists.get(count)));
+                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(dimg);
+                int posx,posy;
+                if(j==0)
+                    posx=20;
+                else
+                    posx=label_player[i][j-1].getX()+padd_hor;
+                if(i==0)
+                    posy=20;
+                else
+                    posy=label_player[i-1][j].getY()+padd_ver;
+                
+                
+                label_player[i][j] = new RoundedLabel(posx,posy,60,60,img);
+                label_player[i][j].setBounds(posx,posy,50,50);
+                
+                //label_player[i][j].setIcon(icon);
+                player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                
+                JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
+                name.setBounds(posx-10,posy+62,80,20);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setForeground(Color.BLACK);
+                
+                Panel_List.add(name);
+                Panel_List.add(label_player[i][j]);
+                Panel_List.repaint();
+                revalidate();
+                }
+                if(count>=len)
+                break;
+            }
+            ScrollPane.updateUI();
+            ScrollPane.setVisible(true);
+            Panel_List.updateUI();
+            Panel_List.setVisible(true);
     }
 
     private void initLabels(JLabel label[][],int row,int col,String type) {
