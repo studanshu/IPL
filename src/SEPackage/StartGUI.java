@@ -330,14 +330,14 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setLayout(Panel_StatisticsLayout);
         Panel_StatisticsLayout.setHorizontalGroup(
             Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         Panel_StatisticsLayout.setVerticalGroup(
             Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 290, Short.MAX_VALUE)
         );
 
-        Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 500, 290));
+        Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 650, 290));
 
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/home_screen.png"))); // NOI18N
         Bg.setAlignmentY(0.0F);
@@ -827,50 +827,54 @@ public class StartGUI extends javax.swing.JFrame {
                 data.setBounds(x,y+offset,width,height);
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Wickets : "+Integer.toString(wickets));
-                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
-                data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width,height);
-                offset+=off;
-
-                Panel_Statistics.add(data);
                 data=new JLabel("Number of Innings : "+Integer.toString(num_of_innings));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x+300,y+offset,width,height);
+                offset+=off;
+                
+                Panel_Statistics.add(data);
+                data=new JLabel("Wickets : "+Integer.toString(wickets));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x,y+offset,width,height);
+                
+                Panel_Statistics.add(data);
+                data=new JLabel("Economy : "+Float.toString(economy));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x+300,y+offset,width,height);
+                offset+=off;
+                
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Batting Strike rate : "+Float.toString(bat_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width,height);
-                offset+=off;
+                data.setBounds(x,y+offset,width,height);
+                
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Bowling Strike rate : "+Float.toString(bowl_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,width,height);
+                data.setBounds(x+300,y+offset,width,height);
+                offset+=off;
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Batting Average : "+Float.toString(batting_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width,height);
-                offset+=off;
+                data.setBounds(x,y+offset,width,height);
+                
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Bowling Average : "+Float.toString(bowling_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,width,height);
-
-                Panel_Statistics.add(data);
-                data=new JLabel("Economy : "+Float.toString(economy));
-                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
-                data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width,height);
+                data.setBounds(x+300,y+offset,width,height);
                 offset+=off;
+                
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Number of 50's : "+Integer.toString(number_of_fifties));
@@ -882,37 +886,26 @@ public class StartGUI extends javax.swing.JFrame {
                 data=new JLabel("Number of 100's : "+Integer.toString(number_of_centuries));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width,height);
+                data.setBounds(x+300,y+offset,width,height);
                 offset+=off;
 
                 Panel_Statistics.add(data);
                 data=new JLabel("Base Price : $"+Float.toString(base_price));
-                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
-                data.setBounds(x,y+offset,width,height);
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font+10));
+                data.setBounds(x-50,y+offset+10,width+100,height+100);
                 data.setForeground(new java.awt.Color(102, 0, 0));
 
                 Panel_Statistics.add(data);
             }
-        rs=db.getPlayerTeam(Label_Name.getText(),i+"");
-        while(rs.next()){
-                String team = rs.getString("teamname");
-                
-                data=new JLabel("Team : "+team);
-                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
-                data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+200,y+offset,width+50,height);
-                Panel_Statistics.add(data);
-                offset+=off;
-        }
         
         rs=db.getPlayerBid(Label_Name.getText(),i+"");
         while(rs.next()){
                 float bid = rs.getFloat("bid_amount");
                 
-                data=new JLabel("Final Bid Amount : $"+Float.toString(bid));
-                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data=new JLabel("Final Bid : $"+Float.toString(bid));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font+10));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,width,height);
+                data.setBounds(x+250,y+offset+10,width+100,height+100);
                 Panel_Statistics.add(data);
         }
         Panel_Statistics.updateUI();
