@@ -739,13 +739,35 @@ public class StartGUI extends javax.swing.JFrame {
                 offset+=40;
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Base Price : "+Float.toString(base_price));
+                data=new JLabel("Base Price : $"+Float.toString(base_price));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setBounds(x,y+offset,width,height);
                 data.setForeground(new java.awt.Color(102, 0, 0));
 
                 Panel_Statistics.add(data);
             }
+        rs=db.getPlayerTeam(Label_Name.getText(),i+"");
+        while(rs.next()){
+                String team = rs.getString("teamname");
+                
+                data=new JLabel("Team : "+team);
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x+200,y+offset,width,height);
+                Panel_Statistics.add(data);
+                offset+=40;
+        }
+        
+        rs=db.getPlayerBid(Label_Name.getText(),i+"");
+        while(rs.next()){
+                float bid = rs.getFloat("bid_amount");
+                
+                data=new JLabel("Final Bid Amount : $"+Float.toString(bid));
+                data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
+                data.setForeground(new java.awt.Color(102, 0, 0));
+                data.setBounds(x,y+offset,width,height);
+                Panel_Statistics.add(data);
+        }
         Panel_Statistics.updateUI();
         Panel_Statistics.setVisible(true);
         
