@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -131,6 +132,17 @@ public class StartGUI extends javax.swing.JFrame {
         TextField_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextField_SearchActionPerformed(evt);
+            }
+        });
+        TextField_Search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextField_SearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TextField_SearchKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_SearchKeyTyped(evt);
             }
         });
         Panel_Main.add(TextField_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 317, 36));
@@ -359,7 +371,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/home_screen.png"))); // NOI18N
         Bg.setAlignmentY(0.0F);
-        Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1152, 700));
+        Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1152, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -423,6 +435,39 @@ public class StartGUI extends javax.swing.JFrame {
     private void TextField_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_SearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField_SearchActionPerformed
+
+    private void TextField_SearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_SearchKeyPressed
+        
+    }//GEN-LAST:event_TextField_SearchKeyPressed
+
+    private void TextField_SearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_SearchKeyTyped
+        
+    }//GEN-LAST:event_TextField_SearchKeyTyped
+
+    private void TextField_SearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_SearchKeyReleased
+        if(currentTab==0){
+            try {
+                setPlayerScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(currentTab==1){
+            try {
+                setOwnerScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            try {
+                setTeamScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_TextField_SearchKeyReleased
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -511,6 +556,7 @@ public class StartGUI extends javax.swing.JFrame {
     private String team_position[][];
     private int currentTab;
     ArrayList<String> lists;
+    
     private int row_col[][];//0-player,1-owner,2-team
     
     private void initMyComponents() throws IOException {
@@ -559,6 +605,18 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_List.removeAll();
         final File folder = new File(".\\Images_Player\\");
         lists=listFilesForFolder(folder);
+        ArrayList<String> temp_lists = new ArrayList<String>();
+        Iterator itr = lists.iterator();
+        String pre_name = TextField_Search.getText();
+        if(!pre_name.equals("")){
+             while(itr.hasNext()){
+                String tt = (String) itr.next();
+                if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
+                    temp_lists.add(tt);
+                }
+            }
+             lists = (ArrayList<String>)temp_lists.clone();
+        }
         int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[0][0]=row;
@@ -615,11 +673,25 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_List.updateUI();
         Panel_List.setVisible(true);
     }
-
+    
+    
+    
     private void setOwnerScrollPanel() throws IOException {
         Panel_List1.removeAll();
         final File folder = new File(".\\Images_Owner\\");
         lists=listFilesForFolder(folder);
+        ArrayList<String> temp_lists = new ArrayList<String>();
+        Iterator itr = lists.iterator();
+        String pre_name = TextField_Search.getText();
+        if(!pre_name.equals("")){
+             while(itr.hasNext()){
+                String tt = (String) itr.next();
+                if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
+                    temp_lists.add(tt);
+                }
+            }
+             lists = (ArrayList<String>)temp_lists.clone();
+        }
         int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[1][0]=row;
@@ -679,6 +751,18 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_List2.removeAll();
         final File folder = new File(".\\Images_Team\\");
         lists=listFilesForFolder(folder);
+        ArrayList<String> temp_lists = new ArrayList<String>();
+        Iterator itr = lists.iterator();
+        String pre_name = TextField_Search.getText();
+        if(!pre_name.equals("")){
+             while(itr.hasNext()){
+                String tt = (String) itr.next();
+                if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
+                    temp_lists.add(tt);
+                }
+            }
+             lists = (ArrayList<String>)temp_lists.clone();
+        }
         int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[2][0]=row;
