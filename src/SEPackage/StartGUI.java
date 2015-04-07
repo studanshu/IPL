@@ -197,7 +197,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Player.setViewportView(Panel_List);
 
-        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
+        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
 
         ScrollPane_Owner.setBorder(null);
         ScrollPane_Owner.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -222,7 +222,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Owner.setViewportView(Panel_List1);
 
-        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
+        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
 
         ScrollPane_Team.setBorder(null);
         ScrollPane_Team.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -247,7 +247,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Team.setViewportView(Panel_List2);
 
-        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
+        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
 
         Label_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/Close.png"))); // NOI18N
         Label_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
