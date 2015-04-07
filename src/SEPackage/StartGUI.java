@@ -31,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -344,6 +345,9 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_TeamData.setOpaque(false);
 
+        Table_TeamData.setAutoCreateRowSorter(true);
+        Table_TeamData.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        Table_TeamData.setForeground(new java.awt.Color(102, 0, 0));
         Table_TeamData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -360,6 +364,15 @@ public class StartGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Table_TeamData.setGridColor(new java.awt.Color(102, 0, 0));
+        Table_TeamData.setOpaque(false);
+        Table_TeamData.setRowHeight(35);
+        Table_TeamData.setRowSelectionAllowed(false);
+        Table_TeamData.setShowHorizontalLines(false);
+        Table_TeamData.setShowVerticalLines(false);
+        Table_TeamData.getTableHeader().setResizingAllowed(false);
+        Table_TeamData.getTableHeader().setReorderingAllowed(false);
+        Table_TeamData.setVerifyInputWhenFocusTarget(false);
         ScrollPane_TeamData.setViewportView(Table_TeamData);
         if (Table_TeamData.getColumnModel().getColumnCount() > 0) {
             Table_TeamData.getColumnModel().getColumn(0).setResizable(false);
@@ -577,6 +590,9 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_Team.setVisible(false);
         ScrollPane_Owner.setVisible(false);
         currentTab=0;
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        Table_TeamData.setDefaultRenderer(String.class, centerRenderer);
         button_years=new JLabel[7];
         for(i=0;i<7;i++)
         {
