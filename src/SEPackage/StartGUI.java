@@ -339,7 +339,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 500, 290));
 
-        Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy.jpg"))); // NOI18N
+        Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/home_screen.png"))); // NOI18N
         Bg.setAlignmentY(0.0F);
         Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1152, 700));
 
