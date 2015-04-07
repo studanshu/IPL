@@ -359,9 +359,16 @@ public class StartGUI extends javax.swing.JFrame {
                 "Player", "Bid (in $)"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -396,7 +403,7 @@ public class StartGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel_Main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Panel_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -409,6 +416,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
         Label_Team.setIcon(null);
+        Label_Close.setVisible(false);
     }//GEN-LAST:event_Label_CloseMouseClicked
 
     private void B_PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PlayersMouseClicked
@@ -419,6 +427,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Close.setVisible(false);
         Label_Team.setIcon(null);
         currentTab=0;
     }//GEN-LAST:event_B_PlayersMouseClicked
@@ -431,6 +440,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Close.setVisible(false);
         Label_Team.setIcon(null);
         currentTab=1;
     }//GEN-LAST:event_B_OwnersMouseClicked
@@ -443,6 +453,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Close.setVisible(false);
         Label_Team.setIcon(null);
         currentTab=2;
     }//GEN-LAST:event_B_TeamsMouseClicked
@@ -576,6 +587,7 @@ public class StartGUI extends javax.swing.JFrame {
     
     private void initMyComponents() throws IOException {
         int i;
+        Label_Close.setVisible(false);
         Panel_Buttons.setVisible(false);
         ScrollPane_Player.setOpaque(false);
         ScrollPane_Player.getViewport().setOpaque(false);
@@ -899,6 +911,7 @@ public class StartGUI extends javax.swing.JFrame {
     }
     
     private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
+        Label_Close.setVisible(true);
         Panel_Statistics.setVisible(false);
         Label_Team.setIcon(null);
         Panel_Statistics.removeAll();
@@ -919,6 +932,7 @@ public class StartGUI extends javax.swing.JFrame {
         }
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
+        Label_Close.setVisible(true);
         ScrollPane_TeamData.setVisible(false);
         Label_Team.setIcon(null);
         BufferedImage img = null;
@@ -943,6 +957,7 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Team.setIcon(icon);
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
+        Label_Close.setVisible(true);
         ScrollPane_TeamData.setVisible(false);
         Label_Team.setIcon(null);
         BufferedImage img = null;
@@ -1100,32 +1115,35 @@ public class StartGUI extends javax.swing.JFrame {
         rs=db.getTeamBids(team,i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
+        int bid_amount=0;
+        String name="";
         while(rs.next()){
-                String name = rs.getString("name");
-                int bid_amount=rs.getInt("bid_amount");
+                name = rs.getString("name");
+                bid_amount=rs.getInt("bid_amount");
                 model.addRow(new Object[]{name, bid_amount});
         }
         ScrollPane_TeamData.setVisible(true);
     }
 
     private void setupTeamStatistics(int i) throws SQLException {
-        String name_bid[][]=new String[100][2];
+        String name_bid[]=new String[100];
         i+=2008;
         int cnt=0,j;
         rs=db.getTeam(Label_Name.getText(),i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
         while(rs.next()){
-                name_bid[cnt++][0] = rs.getString("name");
+                name_bid[cnt++] = rs.getString("name");
                 
                     
         }
         for(j=0;j<cnt;j++)
         {
-            rs=db.getPlayerBid(name_bid[j][0],i+"");
+            int bid=0;
+            rs=db.getPlayerBid(name_bid[j],i+"");
             while(rs.next())
-                name_bid[j][1]=rs.getString("bid_amount");
-            model.addRow(new Object[]{name_bid[j][0],name_bid[j][1]});
+                bid=rs.getInt("bid_amount");
+            model.addRow(new Object[]{name_bid[j],bid});
         }
         ScrollPane_TeamData.setVisible(true);
     }
