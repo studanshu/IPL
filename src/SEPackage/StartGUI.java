@@ -934,7 +934,6 @@ public class StartGUI extends javax.swing.JFrame {
         String name_bid[][]=new String[100][2];
         i+=2008;
         int cnt=0,j;
-        System.out.println("setupTeamStatistics");
         rs=db.getTeam(Label_Name.getText(),i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
