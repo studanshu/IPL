@@ -171,7 +171,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Player.setViewportView(Panel_List);
 
-        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
+        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
 
         ScrollPane_Owner.setBorder(null);
         ScrollPane_Owner.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -196,7 +196,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Owner.setViewportView(Panel_List1);
 
-        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
+        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
 
         ScrollPane_Team.setBorder(null);
         ScrollPane_Team.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -221,7 +221,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Team.setViewportView(Panel_List2);
 
-        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 380, 500));
+        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 500));
 
         Label_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/Close.png"))); // NOI18N
         Label_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -230,7 +230,7 @@ public class StartGUI extends javax.swing.JFrame {
                 Label_CloseMouseClicked(evt);
             }
         });
-        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 130, 32, 32));
+        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 32, 32));
 
         Panel_Person.setOpaque(false);
 
@@ -277,7 +277,7 @@ public class StartGUI extends javax.swing.JFrame {
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 590, 160));
+        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 590, 160));
 
         Panel_Buttons.setOpaque(false);
 
@@ -296,7 +296,7 @@ public class StartGUI extends javax.swing.JFrame {
             .addComponent(Label_Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 730, 40));
+        Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 730, 40));
 
         ScrollPane_TeamData.setOpaque(false);
 
@@ -322,7 +322,7 @@ public class StartGUI extends javax.swing.JFrame {
             Table_TeamData.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        Panel_Main.add(ScrollPane_TeamData, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 389, 520, 260));
+        Panel_Main.add(ScrollPane_TeamData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 349, 710, 300));
 
         Panel_Statistics.setOpaque(false);
 
@@ -529,7 +529,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_List.removeAll();
         final File folder = new File(".\\Images_Player\\");
         lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[0][0]=row;
         row_col[0][1]=col;
@@ -538,57 +538,59 @@ public class StartGUI extends javax.swing.JFrame {
         player_position=new String[row][col];
         System.out.println("List Size="+len);
         
-        Panel_List.setPreferredSize(new Dimension(376, 100*row));
+        Panel_List.setPreferredSize(new Dimension(376, 110*row));
+        
         
         for(int i=0;i<row&&count<len;i++)
-        {
-            for(int j=0;j<col&&count<len;j++,count++)
             {
-                BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(count)));
-                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(dimg);
-                int posx,posy;
-                if(j==0)
-                    posx=20;
-                else
-                    posx=label_player[i][j-1].getX()+padd_hor;
-                if(i==0)
-                    posy=20;
-                else
-                    posy=label_player[i-1][j].getY()+padd_ver;
-                
-                
-                label_player[i][j] = new RoundedLabel(posx,posy,60,60,img);
-                label_player[i][j].setBounds(posx,posy,50,50);
-                
-                //label_player[i][j].setIcon(icon);
-                player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
-                
-                JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+62,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-                name.setForeground(Color.BLACK);
-                
-                Panel_List.add(name);
-                Panel_List.add(label_player[i][j]);
-                Panel_List.repaint();
-                revalidate();
+                for(int j=0;j<col&&count<len;j++,count++)
+                {
+                    BufferedImage img = null;
+                    img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(count)));
+                    Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
+                    ImageIcon icon = new ImageIcon(dimg);
+                    int posx,posy;
+                    if(j==0)
+                        posx=20;
+                    else
+                        posx=label_player[i][j-1].getX()+padd_hor;
+                    if(i==0)
+                        posy=25;
+                    else
+                        posy=label_player[i-1][j].getY()+padd_ver;
+
+
+                    label_player[i][j] = new RoundedLabel(posx,posy,80,80,img);
+                    label_player[i][j].setBounds(posx,posy,50,50);
+
+                    //label_player[i][j].setIcon(icon);
+                    player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+
+                    JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
+                    name.setBounds(posx,posy+80,80,20);
+                    name.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+                    name.setForeground(Color.BLACK);
+
+                    Panel_List.add(name);
+                    Panel_List.add(label_player[i][j]);
+                    Panel_List.repaint();
+                    revalidate();
                 }
                 if(count>=len)
                 break;
             }
-            initLabels(label_player,row_col[0][0],row_col[0][1],"player");
-            ScrollPane_Player.updateUI();
-            ScrollPane_Player.setVisible(true);
-            Panel_List.updateUI();
-            Panel_List.setVisible(true);
+        initLabels(label_player,row_col[0][0],row_col[0][1],"player");
+        ScrollPane_Player.updateUI();
+        ScrollPane_Player.setVisible(true);
+        Panel_List.updateUI();
+        Panel_List.setVisible(true);
     }
+
     private void setOwnerScrollPanel() throws IOException {
         Panel_List1.removeAll();
         final File folder = new File(".\\Images_Owner\\");
         lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[1][0]=row;
         row_col[1][1]=col;
@@ -597,7 +599,7 @@ public class StartGUI extends javax.swing.JFrame {
         owner_position=new String[row][col];
         System.out.println("List Size="+len);
         
-        Panel_List1.setPreferredSize(new Dimension(376, 100*row));
+        Panel_List1.setPreferredSize(new Dimension(376, 110*row));
         
         for(int i=0;i<row&&count<len;i++)
         {
@@ -613,20 +615,20 @@ public class StartGUI extends javax.swing.JFrame {
                 else
                     posx=label_owner[i][j-1].getX()+padd_hor;
                 if(i==0)
-                    posy=20;
+                    posy=25;
                 else
                     posy=label_owner[i-1][j].getY()+padd_ver;
                 
                 
-                label_owner[i][j] = new RoundedLabel(posx,posy,60,60,img);
+                label_owner[i][j] = new RoundedLabel(posx,posy,80,80,img);
                 label_owner[i][j].setBounds(posx,posy,50,50);
                 
                 //label_owner[i][j].setIcon(icon);
                 owner_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
                 
                 JLabel name=new JLabel(owner_position[i][j],SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+62,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setBounds(posx,posy+80,80,20);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
                 name.setForeground(Color.BLACK);
                 
                 Panel_List1.add(name);
@@ -647,7 +649,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_List2.removeAll();
         final File folder = new File(".\\Images_Team\\");
         lists=listFilesForFolder(folder);
-        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
         int col=3,row=(lists.size()/col)+1;
         row_col[2][0]=row;
         row_col[2][1]=col;
@@ -656,7 +658,7 @@ public class StartGUI extends javax.swing.JFrame {
         team_position=new String[row][col];
         System.out.println("Lists size="+len);
         
-        Panel_List2.setPreferredSize(new Dimension(376, 100*row));
+        Panel_List2.setPreferredSize(new Dimension(376, 110*row));
         
         for(int i=0;i<row&&count<len;i++)
         {
@@ -664,7 +666,7 @@ public class StartGUI extends javax.swing.JFrame {
             {
                 BufferedImage img = null;
                 img = ImageIO.read(new File(".\\Images_Team\\"+lists.get(count)));
-                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
+                Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
                 if(j==0)
@@ -672,20 +674,20 @@ public class StartGUI extends javax.swing.JFrame {
                 else
                     posx=label_team[i][j-1].getX()+padd_hor;
                 if(i==0)
-                    posy=20;
+                    posy=25;
                 else
                     posy=label_team[i-1][j].getY()+padd_ver;
                 
                 
-                label_team[i][j] = new RoundedLabel(posx,posy,60,60,img);
+                label_team[i][j] = new RoundedLabel(posx,posy,80,80,img);
                 label_team[i][j].setBounds(posx,posy,50,50);
                 
                 //label_team[i][j].setIcon(icon);
                 team_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
                 
                 JLabel name=new JLabel(team_position[i][j],SwingConstants.CENTER);
-                name.setBounds(posx-10,posy+62,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setBounds(posx,posy+80,80,20);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
                 name.setForeground(Color.BLACK);
                 
                 Panel_List2.add(name);
