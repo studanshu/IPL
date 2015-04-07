@@ -6,6 +6,7 @@
 
 package SEPackage;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,6 +34,8 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -588,7 +591,10 @@ public class StartGUI extends javax.swing.JFrame {
         centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
         Table_TeamData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         Table_TeamData.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        
+        Table_TeamData.getTableHeader().setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        Table_TeamData.getTableHeader().setForeground(Color.darkGray);
+        ((DefaultTableCellRenderer)Table_TeamData.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
         row_col=new int[3][2];
         setPlayerScrollPanel();
         setOwnerScrollPanel();
