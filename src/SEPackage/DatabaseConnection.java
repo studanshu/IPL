@@ -128,4 +128,120 @@ public class DatabaseConnection {
         }
         return resultSet;
     }
+    
+    
+    
+    
+     public ResultSet getHighestBids(String teamname,String year){
+        try{
+            if(year!=""){
+                    resultSet = statement.executeQuery("select * from Person natural join Bids where teamname like \""+teamname+"%\" and year="+year+" order by bid_amount desc;");
+            }
+            else{
+                    resultSet = statement.executeQuery("select * from Person natural join Bids where teamname like \""+teamname+"%\" order by bid_amount desc;");
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
+
+    public ResultSet getHighestTeamSumBid(String teamname,String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select *, sum(bid_amount) as sum from Person natural join Bids where teamname like \""+teamname+"%\" and year="+year+" group by teamname order by sum desc;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select *, sum(bid_amount) as sum from Person natural join Bids where teamname like \""+teamname+"%\" group by teamname order by sum desc;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+    }
+
+    public ResultSet getAverageBid(String teamname,String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select *, avg(bid_amount) as avg from Person natural join Bids where teamname like \""+teamname+"%\" and year="+year+" group by teamname order by avg desc;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select *, avg(bid_amount) as avg from Person natural join Bids where teamname like \""+teamname+"%\" group by teamname order by avg desc;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
+
+   public ResultSet IPLDatesAndVenue(String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select * from IPL natural join IPLDates where year="+year+";");
+           }
+           else{
+                   resultSet = statement.executeQuery("select * from IPL natural join IPLDates");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
+
+
+   public ResultSet getRetirement(String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select * from Retirement natural join Person where year = "+year+" order by year;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select * from Retirement natural join Person order by year;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
+
+   public ResultSet getTrades(String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select * from Trades natural join Person where year = "+year+" order by year;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select * from Trades natural join Person order by year;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
+
+   public ResultSet getReplacments(String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select * from Replacements natural join Person where year = "+year+" order by year;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select * from Replacements natural join Person order by year;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
+
+   public ResultSet getTeamwiseHighestBids(String year){
+       try{
+           if(year!=""){
+                   resultSet = statement.executeQuery("select * from Person natural join Bids, (select teamname as tname,max(bid_amount) as bid_amt from Person natural join Bids where year = "+year+" group by teamname) as a where year="+year+" and teamname=a.tname and bid_amount = a.bid_amt;");
+           }
+           else{
+                   resultSet = statement.executeQuery("select * from Person natural join Bids, (select teamname as tname,max(bid_amount) as bid_amt from Person natural join Bids group by teamname) as a where teamname=a.tname and bid_amount = a.bid_amt;");
+           }
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+   }
 }
