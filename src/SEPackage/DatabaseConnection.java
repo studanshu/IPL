@@ -102,4 +102,12 @@ public class DatabaseConnection {
         return resultSet;
     }
     
+    public ResultSet getTeamBids(String teamname,String year){
+        try{
+            resultSet = statement.executeQuery("select * from Person natural join Bids where teamname=\""+teamname+"\" and year="+year+";");
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
 }
