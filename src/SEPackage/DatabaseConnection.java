@@ -48,6 +48,15 @@ public class DatabaseConnection {
         return resultSet;
     }
     
+    public ResultSet getSelectedPlayer(String name){
+        try{
+            resultSet = statement.executeQuery("select * from 12CS10053.Person where name like \""+name+"\"%;");
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
+    
     public ResultSet getPlayerStatistics(String name, String year){
         try{
             resultSet = statement.executeQuery("select * from Person natural join Player_statistics where name=\""+name+"\" and year="+year+";");
