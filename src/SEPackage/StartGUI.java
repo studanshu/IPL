@@ -590,9 +590,6 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_Team.setVisible(false);
         ScrollPane_Owner.setVisible(false);
         currentTab=0;
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        Table_TeamData.setDefaultRenderer(String.class, centerRenderer);
         button_years=new JLabel[7];
         for(i=0;i<7;i++)
         {
