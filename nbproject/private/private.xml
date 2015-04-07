@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -9,15 +8,3 @@
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Manav/Desktop/IPL/IPL/src/SEPackage/DatabaseConnection.java</file>
-            <file>file:/C:/Users/Manav/Desktop/IPL/IPL/src/SEPackage/StartGUI.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> bd513548fd7d2df156a3da05aa83c921ced7943a
