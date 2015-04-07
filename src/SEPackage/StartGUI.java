@@ -94,6 +94,8 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_Main = new javax.swing.JPanel();
+        TextField_Search = new javax.swing.JTextField();
+        B_Search = new javax.swing.JLabel();
         B_Players = new javax.swing.JLabel();
         B_Teams = new javax.swing.JLabel();
         B_Owners = new javax.swing.JLabel();
@@ -124,13 +126,25 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TextField_Search.setBackground(new java.awt.Color(240, 240, 240));
+        TextField_Search.setBorder(null);
+        TextField_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField_SearchActionPerformed(evt);
+            }
+        });
+        Panel_Main.add(TextField_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 317, 36));
+
+        B_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/find.png"))); // NOI18N
+        Panel_Main.add(B_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 32, 32));
+
         B_Players.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Players.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 B_PlayersMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 40));
+        Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 120, 30));
 
         B_Teams.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Teams.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,7 +152,7 @@ public class StartGUI extends javax.swing.JFrame {
                 B_TeamsMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 40));
+        Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 110, 30));
 
         B_Owners.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Owners.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,7 +160,7 @@ public class StartGUI extends javax.swing.JFrame {
                 B_OwnersMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 130, 40));
+        Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 110, 30));
 
         ScrollPane_Player.setBorder(null);
         ScrollPane_Player.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -230,7 +244,7 @@ public class StartGUI extends javax.swing.JFrame {
                 Label_CloseMouseClicked(evt);
             }
         });
-        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 32, 32));
+        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 150, 32, 32));
 
         Panel_Person.setOpaque(false);
 
@@ -249,16 +263,18 @@ public class StartGUI extends javax.swing.JFrame {
             Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_PersonLayout.createSequentialGroup()
                 .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
                 .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(20, 20, 20)
+                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 80, Short.MAX_VALUE))
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                        .addComponent(Label_Team, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Label_Team, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         Panel_PersonLayout.setVerticalGroup(
@@ -268,16 +284,18 @@ public class StartGUI extends javax.swing.JFrame {
                     .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
                         .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Team, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 10, Short.MAX_VALUE))
+                            .addComponent(Label_Team, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 81, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
 
-        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 590, 160));
+        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
 
         Panel_Buttons.setOpaque(false);
 
@@ -363,6 +381,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Team.setIcon(null);
     }//GEN-LAST:event_Label_CloseMouseClicked
 
     private void B_PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PlayersMouseClicked
@@ -373,6 +392,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Team.setIcon(null);
         currentTab=0;
     }//GEN-LAST:event_B_PlayersMouseClicked
 
@@ -384,6 +404,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Team.setIcon(null);
         currentTab=1;
     }//GEN-LAST:event_B_OwnersMouseClicked
 
@@ -395,8 +416,13 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
+        Label_Team.setIcon(null);
         currentTab=2;
     }//GEN-LAST:event_B_TeamsMouseClicked
+
+    private void TextField_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField_SearchActionPerformed
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -452,6 +478,7 @@ public class StartGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel B_Owners;
     private javax.swing.JLabel B_Players;
+    private javax.swing.JLabel B_Search;
     private javax.swing.JLabel B_Teams;
     private javax.swing.JLabel Bg;
     private javax.swing.JLabel Label_Buttons;
@@ -473,6 +500,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane_Team;
     private javax.swing.JScrollPane ScrollPane_TeamData;
     private javax.swing.JTable Table_TeamData;
+    private javax.swing.JTextField TextField_Search;
     // End of variables declaration//GEN-END:variables
     private JLabel label_player[][];
     private JLabel label_owner[][];
@@ -518,6 +546,8 @@ public class StartGUI extends javax.swing.JFrame {
                         try {
                             button_yearsMouseClicked(evt,i_);
                         } catch (SQLException ex) {
+                            Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
                             Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
@@ -757,6 +787,7 @@ public class StartGUI extends javax.swing.JFrame {
     
     private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         Panel_Statistics.setVisible(false);
+        Label_Team.setIcon(null);
         lists=listFilesForFolder(new File(".\\Images_Player\\"));
         Panel_Statistics.removeAll();
         BufferedImage img = null;
@@ -777,9 +808,11 @@ public class StartGUI extends javax.swing.JFrame {
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
         lists=listFilesForFolder(new File(".\\Images_Owner\\"));
+        Label_Team.setIcon(null);
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
         ScrollPane_TeamData.setVisible(false);
+        Label_Team.setIcon(null);
         lists=listFilesForFolder(new File(".\\Images_Team\\"));
         BufferedImage img = null;
         Label_Nationality.setText("");
@@ -793,7 +826,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Person.setVisible(true);
     }
     
-    private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException {
+    private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException, IOException {
         if(currentTab==0)
             setupPlayerStatistics(i);
         else if(currentTab==1)
@@ -802,7 +835,7 @@ public class StartGUI extends javax.swing.JFrame {
             setupTeamStatistics(i);
         
     }
-    private void setupPlayerStatistics(int i) throws SQLException {
+    private void setupPlayerStatistics(int i) throws SQLException, IOException {
         Panel_Statistics.removeAll();
         i+=2008;
         rs=db.getPlayerStatistics(Label_Name.getText(),i+"");
@@ -908,6 +941,16 @@ public class StartGUI extends javax.swing.JFrame {
                 data.setBounds(x+250,y+offset+10,width+100,height+100);
                 Panel_Statistics.add(data);
         }
+        rs=db.getPlayerTeam(Label_Name.getText(),i+"");
+        BufferedImage img = null;
+        String team="";
+        while(rs.next())
+            team=rs.getString("teamname");
+        img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
+        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(dimg);
+        Label_Team.setIcon(icon);
+        
         Panel_Statistics.updateUI();
         Panel_Statistics.setVisible(true);
     }
