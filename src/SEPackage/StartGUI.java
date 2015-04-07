@@ -124,9 +124,19 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 40));
 
         B_Teams.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        B_Teams.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_TeamsMouseClicked(evt);
+            }
+        });
         Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 110, 40));
 
         B_Owners.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        B_Owners.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_OwnersMouseClicked(evt);
+            }
+        });
         Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 130, 40));
 
         ScrollPane.setBorder(null);
@@ -265,8 +275,28 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Label_CloseMouseClicked
 
     private void B_PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PlayersMouseClicked
-        
+            try {
+                setPlayerScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_B_PlayersMouseClicked
+
+    private void B_OwnersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_OwnersMouseClicked
+        try {
+                setOwnerScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_B_OwnersMouseClicked
+
+    private void B_TeamsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_TeamsMouseClicked
+        try {
+                setTeamScrollPanel();
+            } catch (IOException ex) {
+                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_B_TeamsMouseClicked
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -356,12 +386,10 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane.setOpaque(false);
         ScrollPane.getViewport().setOpaque(false);
         
+        setOwnerScrollPanel();
+        
+        setTeamScrollPanel();
         setPlayerScrollPanel();
-        initLabels(label_player,row_col[0][0],row_col[0][1],"player");
-        //setOwnerScrollPanel();
-        //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
-        //setTeamScrollPanel();
-        //initLabels(label_team,row_col[2][0],row_col[2][1],"team");
         button_years=new JLabel[7];
         for(i=0;i<7;i++)
         {
@@ -384,7 +412,8 @@ public class StartGUI extends javax.swing.JFrame {
     }
     
     private void setPlayerScrollPanel() throws IOException {
-        final File folder = new File(".\\Images\\");
+        Panel_List.removeAll();
+        final File folder = new File(".\\Images_Player\\");
         lists=listFilesForFolder(folder);
         int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
         int col=3,row=(lists.size()/col)+1;
@@ -393,7 +422,7 @@ public class StartGUI extends javax.swing.JFrame {
         //Panel_List=new JPanel(new GridLayout(0,5));
         label_player=new RoundedLabel[row][col];
         player_position=new String[row][col];
-        System.out.println(len);
+        System.out.println("List Size="+len);
         
         Panel_List.setPreferredSize(new Dimension(376, 100*row));
         
@@ -402,7 +431,7 @@ public class StartGUI extends javax.swing.JFrame {
             for(int j=0;j<col&&count<len;j++,count++)
             {
                 BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images\\"+lists.get(count)));
+                img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(count)));
                 Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
@@ -435,6 +464,125 @@ public class StartGUI extends javax.swing.JFrame {
                 if(count>=len)
                 break;
             }
+            initLabels(label_player,row_col[0][0],row_col[0][1],"player");
+            ScrollPane.updateUI();
+            ScrollPane.setVisible(true);
+            Panel_List.updateUI();
+            Panel_List.setVisible(true);
+    }
+    private void setOwnerScrollPanel() throws IOException {
+        Panel_List.removeAll();
+        final File folder = new File(".\\Images_Owner\\");
+        lists=listFilesForFolder(folder);
+        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int col=3,row=(lists.size()/col)+1;
+        row_col[1][0]=row;
+        row_col[1][1]=col;
+        //Panel_List=new JPanel(new GridLayout(0,5));
+        label_owner=new RoundedLabel[row][col];
+        owner_position=new String[row][col];
+        System.out.println("List Size="+len);
+        
+        Panel_List.setPreferredSize(new Dimension(376, 100*row));
+        
+        for(int i=0;i<row&&count<len;i++)
+        {
+            for(int j=0;j<col&&count<len;j++,count++)
+            {
+                BufferedImage img = null;
+                img = ImageIO.read(new File(".\\Images_Owner\\"+lists.get(count)));
+                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(dimg);
+                int posx,posy;
+                if(j==0)
+                    posx=20;
+                else
+                    posx=label_owner[i][j-1].getX()+padd_hor;
+                if(i==0)
+                    posy=20;
+                else
+                    posy=label_owner[i-1][j].getY()+padd_ver;
+                
+                
+                label_owner[i][j] = new RoundedLabel(posx,posy,60,60,img);
+                label_owner[i][j].setBounds(posx,posy,50,50);
+                
+                //label_owner[i][j].setIcon(icon);
+                owner_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                
+                JLabel name=new JLabel(owner_position[i][j],SwingConstants.CENTER);
+                name.setBounds(posx-10,posy+62,80,20);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setForeground(Color.BLACK);
+                
+                Panel_List.add(name);
+                Panel_List.add(label_owner[i][j]);
+                Panel_List.repaint();
+                revalidate();
+                }
+                if(count>=len)
+                break;
+            }
+            initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
+            ScrollPane.updateUI();
+            ScrollPane.setVisible(true);
+            Panel_List.updateUI();
+            Panel_List.setVisible(true);
+    }
+    private void setTeamScrollPanel() throws IOException {
+        Panel_List.removeAll();
+        final File folder = new File(".\\Images_Team\\");
+        lists=listFilesForFolder(folder);
+        int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
+        int col=3,row=(lists.size()/col)+1;
+        row_col[2][0]=row;
+        row_col[2][1]=col;
+        //Panel_List=new JPanel(new GridLayout(0,5));
+        label_team=new RoundedLabel[row][col];
+        team_position=new String[row][col];
+        System.out.println("Lists size="+len);
+        
+        Panel_List.setPreferredSize(new Dimension(376, 100*row));
+        
+        for(int i=0;i<row&&count<len;i++)
+        {
+            for(int j=0;j<col&&count<len;j++,count++)
+            {
+                BufferedImage img = null;
+                img = ImageIO.read(new File(".\\Images_Team\\"+lists.get(count)));
+                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(dimg);
+                int posx,posy;
+                if(j==0)
+                    posx=20;
+                else
+                    posx=label_team[i][j-1].getX()+padd_hor;
+                if(i==0)
+                    posy=20;
+                else
+                    posy=label_team[i-1][j].getY()+padd_ver;
+                
+                
+                label_team[i][j] = new RoundedLabel(posx,posy,60,60,img);
+                label_team[i][j].setBounds(posx,posy,50,50);
+                
+                //label_team[i][j].setIcon(icon);
+                team_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                
+                JLabel name=new JLabel(team_position[i][j],SwingConstants.CENTER);
+                name.setBounds(posx-10,posy+62,80,20);
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+                name.setForeground(Color.BLACK);
+                
+                Panel_List.add(name);
+                Panel_List.add(label_team[i][j]);
+                Panel_List.repaint();
+                revalidate();
+                }
+                if(count>=len)
+                break;
+            }
+            initLabels(label_team,row_col[2][0],row_col[2][1],"team");
             ScrollPane.updateUI();
             ScrollPane.setVisible(true);
             Panel_List.updateUI();
@@ -488,7 +636,7 @@ public class StartGUI extends javax.swing.JFrame {
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
-        img = ImageIO.read(new File(".\\Images\\"+lists.get(i*3+j)));
+        img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(i*3+j)));
         Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(player_position[i][j]);
@@ -511,7 +659,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.removeAll();
         i+=2008;
         rs=db.getPlayerStatistics(Label_Name.getText(),i+"");
-        int x=60,y=10,font=15,offset=0;
+        int x=60,y=10,font=15,offset=0,width=200,height=16;
         JLabel data;
         while(rs.next()){
                 int runs = rs.getInt(4);
@@ -529,68 +677,73 @@ public class StartGUI extends javax.swing.JFrame {
                 data=new JLabel("Runs : "+Integer.toString(runs));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
-                offset+=40;
+                data.setBounds(x,y+offset,width,height);
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Wickets : "+Integer.toString(wickets));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x+200,y+offset,width,height);
                 offset+=40;
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Number of Innings : "+Integer.toString(num_of_innings));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
-                offset+=40;
+                data.setBounds(x,y+offset,width,height);
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Batting Strike rate : "+Float.toString(bat_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x+200,y+offset,width,height);
                 offset+=40;
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Bowling Strike rate : "+Float.toString(bowl_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
-                offset+=40;
+                data.setBounds(x,y+offset,width,height);
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Batting Average : "+Float.toString(batting_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x+200,y+offset,width,height);
                 offset+=40;
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Bowling Average : "+Float.toString(bowling_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
-                offset+=40;
+                data.setBounds(x,y+offset,width,height);
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Economy : "+Float.toString(economy));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x+200,y+offset,width,height);
                 offset+=40;
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Number of 50's : "+Integer.toString(number_of_fifties));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
-                offset+=40;
+                data.setBounds(x,y+offset,width,height);
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Number of 100's : "+Integer.toString(number_of_centuries));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x+200,y+offset,width,height);
                 offset+=40;
+
                 Panel_Statistics.add(data);
                 data=new JLabel("Base Price : "+Float.toString(base_price));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
-                data.setBounds(x,y+offset,390,16);
+                data.setBounds(x,y+offset,width,height);
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                offset+=40;
+
                 Panel_Statistics.add(data);
             }
         Panel_Statistics.updateUI();
