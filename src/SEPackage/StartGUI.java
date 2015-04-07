@@ -364,7 +364,7 @@ public class StartGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Table_TeamData.setGridColor(new java.awt.Color(102, 0, 0));
+        Table_TeamData.setGridColor(new java.awt.Color(51, 0, 0));
         Table_TeamData.setOpaque(false);
         Table_TeamData.setRowHeight(35);
         Table_TeamData.setRowSelectionAllowed(false);
@@ -583,6 +583,12 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setOpaque(false);
         ScrollPane_TeamData.getViewport().setOpaque(false);
         ScrollPane_TeamData.setVisible(false);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        Table_TeamData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        Table_TeamData.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        
         row_col=new int[3][2];
         setPlayerScrollPanel();
         setOwnerScrollPanel();
