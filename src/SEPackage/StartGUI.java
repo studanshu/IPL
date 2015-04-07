@@ -256,7 +256,7 @@ public class StartGUI extends javax.swing.JFrame {
                 Label_CloseMouseClicked(evt);
             }
         });
-        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 150, 32, 32));
+        Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 32, 32));
 
         Panel_Person.setOpaque(false);
 
@@ -555,7 +555,7 @@ public class StartGUI extends javax.swing.JFrame {
     private String owner_position[][];
     private String team_position[][];
     private int currentTab;
-    ArrayList<String> lists;
+    ArrayList<String> lists_player,lists_owner,lists_team;
     
     private int row_col[][];//0-player,1-owner,2-team
     
@@ -604,9 +604,9 @@ public class StartGUI extends javax.swing.JFrame {
     private void setPlayerScrollPanel() throws IOException {
         Panel_List.removeAll();
         final File folder = new File(".\\Images_Player\\");
-        lists=listFilesForFolder(folder);
+        lists_player=listFilesForFolder(folder);
         ArrayList<String> temp_lists = new ArrayList<String>();
-        Iterator itr = lists.iterator();
+        Iterator itr = lists_player.iterator();
         String pre_name = TextField_Search.getText();
         if(!pre_name.equals("")){
              while(itr.hasNext()){
@@ -615,10 +615,10 @@ public class StartGUI extends javax.swing.JFrame {
                     temp_lists.add(tt);
                 }
             }
-             lists = (ArrayList<String>)temp_lists.clone();
+             lists_player = (ArrayList<String>)temp_lists.clone();
         }
-        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
-        int col=3,row=(lists.size()/col)+1;
+        int len=lists_player.size(),count=0,padd_hor=110,padd_ver=110;
+        int col=3,row=(lists_player.size()/col)+1;
         row_col[0][0]=row;
         row_col[0][1]=col;
         //Panel_List=new JPanel(new GridLayout(0,5));
@@ -634,7 +634,7 @@ public class StartGUI extends javax.swing.JFrame {
                 for(int j=0;j<col&&count<len;j++,count++)
                 {
                     BufferedImage img = null;
-                    img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(count)));
+                    img = ImageIO.read(new File(".\\Images_Player\\"+lists_player.get(count)));
                     Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
                     ImageIcon icon = new ImageIcon(dimg);
                     int posx,posy;
@@ -652,7 +652,7 @@ public class StartGUI extends javax.swing.JFrame {
                     label_player[i][j].setBounds(posx,posy,50,50);
 
                     //label_player[i][j].setIcon(icon);
-                    player_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                    player_position[i][j]=lists_player.get(count).substring(0,lists_player.get(count).length()-4);
 
                     JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
                     name.setBounds(posx,posy+80,80,20);
@@ -679,21 +679,21 @@ public class StartGUI extends javax.swing.JFrame {
     private void setOwnerScrollPanel() throws IOException {
         Panel_List1.removeAll();
         final File folder = new File(".\\Images_Owner\\");
-        lists=listFilesForFolder(folder);
-        ArrayList<String> temp_lists = new ArrayList<String>();
-        Iterator itr = lists.iterator();
+        lists_owner=listFilesForFolder(folder);
+        ArrayList<String> temp_lists_owner = new ArrayList<String>();
+        Iterator itr = lists_owner.iterator();
         String pre_name = TextField_Search.getText();
         if(!pre_name.equals("")){
              while(itr.hasNext()){
                 String tt = (String) itr.next();
                 if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
-                    temp_lists.add(tt);
+                    temp_lists_owner.add(tt);
                 }
             }
-             lists = (ArrayList<String>)temp_lists.clone();
+             lists_owner = (ArrayList<String>)temp_lists_owner.clone();
         }
-        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
-        int col=3,row=(lists.size()/col)+1;
+        int len=lists_owner.size(),count=0,padd_hor=110,padd_ver=110;
+        int col=3,row=(lists_owner.size()/col)+1;
         row_col[1][0]=row;
         row_col[1][1]=col;
         //Panel_List1=new JPanel(new GridLayout(0,5));
@@ -708,7 +708,7 @@ public class StartGUI extends javax.swing.JFrame {
             for(int j=0;j<col&&count<len;j++,count++)
             {
                 BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images_Owner\\"+lists.get(count)));
+                img = ImageIO.read(new File(".\\Images_Owner\\"+lists_owner.get(count)));
                 Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
@@ -726,7 +726,7 @@ public class StartGUI extends javax.swing.JFrame {
                 label_owner[i][j].setBounds(posx,posy,50,50);
                 
                 //label_owner[i][j].setIcon(icon);
-                owner_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                owner_position[i][j]=lists_owner.get(count).substring(0,lists_owner.get(count).length()-4);
                 
                 JLabel name=new JLabel(owner_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx,posy+80,80,20);
@@ -750,21 +750,21 @@ public class StartGUI extends javax.swing.JFrame {
     private void setTeamScrollPanel() throws IOException {
         Panel_List2.removeAll();
         final File folder = new File(".\\Images_Team\\");
-        lists=listFilesForFolder(folder);
-        ArrayList<String> temp_lists = new ArrayList<String>();
-        Iterator itr = lists.iterator();
+        lists_team=listFilesForFolder(folder);
+        ArrayList<String> temp_lists_team = new ArrayList<String>();
+        Iterator itr = lists_team.iterator();
         String pre_name = TextField_Search.getText();
         if(!pre_name.equals("")){
              while(itr.hasNext()){
                 String tt = (String) itr.next();
                 if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
-                    temp_lists.add(tt);
+                    temp_lists_team.add(tt);
                 }
             }
-             lists = (ArrayList<String>)temp_lists.clone();
+             lists_team = (ArrayList<String>)temp_lists_team.clone();
         }
-        int len=lists.size(),count=0,padd_hor=110,padd_ver=110;
-        int col=3,row=(lists.size()/col)+1;
+        int len=lists_team.size(),count=0,padd_hor=110,padd_ver=110;
+        int col=3,row=(lists_team.size()/col)+1;
         row_col[2][0]=row;
         row_col[2][1]=col;
         //Panel_List2=new JPanel(new GridLayout(0,5));
@@ -779,7 +779,7 @@ public class StartGUI extends javax.swing.JFrame {
             for(int j=0;j<col&&count<len;j++,count++)
             {
                 BufferedImage img = null;
-                img = ImageIO.read(new File(".\\Images_Team\\"+lists.get(count)));
+                img = ImageIO.read(new File(".\\Images_Team\\"+lists_team.get(count)));
                 Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
@@ -797,7 +797,7 @@ public class StartGUI extends javax.swing.JFrame {
                 label_team[i][j].setBounds(posx,posy,50,50);
                 
                 //label_team[i][j].setIcon(icon);
-                team_position[i][j]=lists.get(count).substring(0,lists.get(count).length()-4);
+                team_position[i][j]=lists_team.get(count).substring(0,lists_team.get(count).length()-4);
                 
                 JLabel name=new JLabel(team_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx,posy+80,80,20);
@@ -872,12 +872,11 @@ public class StartGUI extends javax.swing.JFrame {
     private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         Panel_Statistics.setVisible(false);
         Label_Team.setIcon(null);
-        lists=listFilesForFolder(new File(".\\Images_Player\\"));
         Panel_Statistics.removeAll();
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
-        img = ImageIO.read(new File(".\\Images_Player\\"+lists.get(i*3+j)));
+        img = ImageIO.read(new File(".\\Images_Player\\"+lists_player.get(i*3+j)));
         Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(player_position[i][j]);
@@ -891,17 +890,15 @@ public class StartGUI extends javax.swing.JFrame {
         }
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
-        lists=listFilesForFolder(new File(".\\Images_Owner\\"));
         Label_Team.setIcon(null);
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
         ScrollPane_TeamData.setVisible(false);
         Label_Team.setIcon(null);
-        lists=listFilesForFolder(new File(".\\Images_Team\\"));
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
-        img = ImageIO.read(new File(".\\Images_Team\\"+lists.get(i*3+j)));
+        img = ImageIO.read(new File(".\\Images_Team\\"+lists_team.get(i*3+j)));
         Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(team_position[i][j]);
