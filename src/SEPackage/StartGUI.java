@@ -115,9 +115,9 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Team = new javax.swing.JLabel();
         Panel_Buttons = new javax.swing.JPanel();
         Label_Buttons = new javax.swing.JLabel();
+        Panel_Statistics = new javax.swing.JPanel();
         ScrollPane_TeamData = new javax.swing.JScrollPane();
         Table_TeamData = new javax.swing.JTable();
-        Panel_Statistics = new javax.swing.JPanel();
         Bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,10 +145,10 @@ public class StartGUI extends javax.swing.JFrame {
                 TextField_SearchKeyTyped(evt);
             }
         });
-        Panel_Main.add(TextField_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 317, 36));
+        Panel_Main.add(TextField_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 317, 36));
 
         B_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/find.png"))); // NOI18N
-        Panel_Main.add(B_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 32, 32));
+        Panel_Main.add(B_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 32, 32));
 
         B_Players.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Players.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,7 +156,7 @@ public class StartGUI extends javax.swing.JFrame {
                 B_PlayersMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 120, 30));
+        Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, 30));
 
         B_Teams.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Teams.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,7 +164,7 @@ public class StartGUI extends javax.swing.JFrame {
                 B_TeamsMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 110, 30));
+        Panel_Main.add(B_Teams, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, 30));
 
         B_Owners.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         B_Owners.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,7 +172,7 @@ public class StartGUI extends javax.swing.JFrame {
                 B_OwnersMouseClicked(evt);
             }
         });
-        Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 110, 30));
+        Panel_Main.add(B_Owners, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 110, 30));
 
         ScrollPane_Player.setBorder(null);
         ScrollPane_Player.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -328,6 +328,21 @@ public class StartGUI extends javax.swing.JFrame {
 
         Panel_Main.add(Panel_Buttons, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 730, 40));
 
+        Panel_Statistics.setOpaque(false);
+
+        javax.swing.GroupLayout Panel_StatisticsLayout = new javax.swing.GroupLayout(Panel_Statistics);
+        Panel_Statistics.setLayout(Panel_StatisticsLayout);
+        Panel_StatisticsLayout.setHorizontalGroup(
+            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        Panel_StatisticsLayout.setVerticalGroup(
+            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
+        );
+
+        Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 650, 290));
+
         ScrollPane_TeamData.setOpaque(false);
 
         Table_TeamData.setModel(new javax.swing.table.DefaultTableModel(
@@ -353,21 +368,6 @@ public class StartGUI extends javax.swing.JFrame {
         }
 
         Panel_Main.add(ScrollPane_TeamData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 349, 710, 300));
-
-        Panel_Statistics.setOpaque(false);
-
-        javax.swing.GroupLayout Panel_StatisticsLayout = new javax.swing.GroupLayout(Panel_Statistics);
-        Panel_Statistics.setLayout(Panel_StatisticsLayout);
-        Panel_StatisticsLayout.setHorizontalGroup(
-            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
-        );
-        Panel_StatisticsLayout.setVerticalGroup(
-            Panel_StatisticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-
-        Panel_Main.add(Panel_Statistics, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 650, 290));
 
         Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/home_screen.png"))); // NOI18N
         Bg.setAlignmentY(0.0F);
