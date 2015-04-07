@@ -75,6 +75,15 @@ public class DatabaseConnection {
         return resultSet;
     }
     
+    public ResultSet getOwnerDetails(String name,String year){
+        try{
+            resultSet = statement.executeQuery("select * from Person natural join TeamOwner where name=\""+name+"\" and year="+year+";");
+        } catch (SQLException e) {
+            return null;
+        }
+        return resultSet;
+    }
+    
     public ResultSet getPlayerTeam(String name,String year){
         try{
             resultSet = statement.executeQuery("select * from Person natural join TeamPlayer where name=\""+name+"\" and year="+year+";");

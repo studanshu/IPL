@@ -275,16 +275,15 @@ public class StartGUI extends javax.swing.JFrame {
             Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_PersonLayout.createSequentialGroup()
                 .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Label_Team, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -300,9 +299,9 @@ public class StartGUI extends javax.swing.JFrame {
                         .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Label_Team, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(Panel_PersonLayout.createSequentialGroup()
-                                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 81, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -834,10 +833,10 @@ public class StartGUI extends javax.swing.JFrame {
                     label[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                     label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        Panel_Person.setVisible(true);
+                        Panel_Buttons.setVisible(true);
                         if(option.equalsIgnoreCase("player"))
                         {
-                            Panel_Person.setVisible(true);
-                            Panel_Buttons.setVisible(true);
                             try {
                                 label_playerMouseClicked(evt,i_,j_);
                             } catch (IOException ex) {
@@ -848,11 +847,16 @@ public class StartGUI extends javax.swing.JFrame {
                         }
                         else if(option.equalsIgnoreCase("owner"))
                         {
-                            label_ownerMouseClicked(evt,i_,j_);
+                            try {
+                                label_ownerMouseClicked(evt,i_,j_);
+                            } catch (IOException ex) {
+                                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                         else
                         {
-                            Panel_Buttons.setVisible(true);
                             try {
                                 label_teamMouseClicked(evt,i_,j_);
                             } catch (IOException ex) {
@@ -889,8 +893,29 @@ public class StartGUI extends javax.swing.JFrame {
             Label_Sex.setText(rs.getString("sex"));
         }
     }
-    private void label_ownerMouseClicked(MouseEvent evt, int i, int j) {
+    private void label_ownerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
+        ScrollPane_TeamData.setVisible(false);
         Label_Team.setIcon(null);
+        BufferedImage img = null;
+        String team="";
+        Label_Nationality.setText("");
+        Label_Sex.setText("");
+        img = ImageIO.read(new File(".\\Images_Owner\\"+lists_owner.get(i*3+j)));
+        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(dimg);
+        Label_Name.setText(owner_position[i][j]);
+        Label_Image.setIcon(icon);
+        rs=db.getOwnerDetails(owner_position[i][j],"2008");
+        while(rs.next())
+        {
+            Label_Nationality.setText("$ "+rs.getString("initial_cash"));
+            Label_Sex.setText(rs.getString("sex"));
+            team=rs.getString("teamname");
+        }
+        img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
+        dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
+        icon = new ImageIcon(dimg);
+        Label_Team.setIcon(icon);
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
         ScrollPane_TeamData.setVisible(false);
@@ -903,8 +928,6 @@ public class StartGUI extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(team_position[i][j]);
         Label_Image.setIcon(icon);
-        Panel_Person.updateUI();
-        Panel_Person.setVisible(true);
     }
     
     private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException, IOException {
@@ -1028,7 +1051,7 @@ public class StartGUI extends javax.swing.JFrame {
         while(rs.next())
             team=rs.getString("teamname");
         img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
-        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Team.setIcon(icon);
         
@@ -1036,9 +1059,20 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setVisible(true);
     }
     
-    private void setupOwnerStatistics(int i) throws SQLException {
+    private void setupOwnerStatistics(int i) throws SQLException, IOException {
         i+=2008;
-        rs=db.getTeamBids(Label_Name.getText(),i+"");
+        String team="";
+        rs=db.getOwnerDetails(Label_Name.getText(),i+"");
+        while(rs.next())
+        {
+            Label_Nationality.setText("$ "+rs.getString("initial_cash"));
+            team=rs.getString("teamname");
+        }
+        Image img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
+        Image dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(dimg);
+        Label_Team.setIcon(icon);
+        rs=db.getTeamBids(team,i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
         while(rs.next()){
