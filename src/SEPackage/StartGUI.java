@@ -116,6 +116,11 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         B_Players.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        B_Players.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_PlayersMouseClicked(evt);
+            }
+        });
         Panel_Main.add(B_Players, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 120, 40));
 
         B_Teams.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -256,8 +261,12 @@ public class StartGUI extends javax.swing.JFrame {
     private void Label_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Label_CloseMouseClicked
         Panel_Person.setVisible(false);
         Panel_Buttons.setVisible(false);
-        Panel_List.setVisible(false);
+        Panel_Statistics.setVisible(false);
     }//GEN-LAST:event_Label_CloseMouseClicked
+
+    private void B_PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PlayersMouseClicked
+        
+    }//GEN-LAST:event_B_PlayersMouseClicked
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -347,7 +356,7 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane.setOpaque(false);
         ScrollPane.getViewport().setOpaque(false);
         
-        setScrollPanel();
+        setPlayerScrollPanel();
         initLabels(label_player,row_col[0][0],row_col[0][1],"player");
         //setOwnerScrollPanel();
         //initLabels(label_owner,row_col[1][0],row_col[1][1],"owner");
@@ -374,7 +383,7 @@ public class StartGUI extends javax.swing.JFrame {
         }
     }
     
-    private void setScrollPanel() throws IOException {
+    private void setPlayerScrollPanel() throws IOException {
         final File folder = new File(".\\Images\\");
         lists=listFilesForFolder(folder);
         int len=lists.size(),count=0,padd_hor=120,padd_ver=100;
@@ -475,17 +484,10 @@ public class StartGUI extends javax.swing.JFrame {
         }
     }
     
-    private void setTeamScrollPanel() {
-        
-    }
-
-    private void setOwnerScrollPanel() {
-        
-    }
-    
     private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         BufferedImage img = null;
-        
+        Label_Nationality.setText("");
+        Label_Sex.setText("");
         img = ImageIO.read(new File(".\\Images\\"+lists.get(i*3+j)));
         Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
