@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -66,6 +68,12 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_Main = new javax.swing.JPanel();
+        Panel_Queries = new javax.swing.JPanel();
+        B_SearchQuery = new javax.swing.JLabel();
+        ComboBox_Team = new javax.swing.JComboBox();
+        ComboBox_Year = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        ComboBox_Query = new javax.swing.JComboBox();
         TextField_Search = new javax.swing.JTextField();
         B_Search = new javax.swing.JLabel();
         B_Players = new javax.swing.JLabel();
@@ -97,6 +105,43 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.setMinimumSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel_Queries.setOpaque(false);
+        Panel_Queries.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        B_SearchQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/search.png"))); // NOI18N
+        Panel_Queries.add(B_SearchQuery, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 100, 40));
+
+        ComboBox_Team.setBackground(new java.awt.Color(102, 102, 102));
+        ComboBox_Team.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        ComboBox_Team.setForeground(new java.awt.Color(102, 0, 0));
+        ComboBox_Team.setMaximumRowCount(4);
+        ComboBox_Team.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Team", "Chennai Super Kings", "Kolkata Knight Riders", "Delhi Daredevils", "Mumbai Indians", "Pune Warriors India", "Kings XI Punjab", "Kochi Tuskers Kerala", "Deccan Chargers", "Rajasthan Royals", "Royal Challengers Bangalore" }));
+        Panel_Queries.add(ComboBox_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 210, 22));
+
+        ComboBox_Year.setBackground(new java.awt.Color(102, 102, 102));
+        ComboBox_Year.setForeground(new java.awt.Color(102, 0, 0));
+        ComboBox_Year.setMaximumRowCount(4);
+        ComboBox_Year.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Year", "Overall", "2008", "2009", "2010", "2011", "2012", "2013", "2014" }));
+        Panel_Queries.add(ComboBox_Year, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 90, 22));
+
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel1.setText("Some Fun Queries");
+        Panel_Queries.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
+
+        ComboBox_Query.setEditable(true);
+        ComboBox_Query.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        ComboBox_Query.setForeground(new java.awt.Color(102, 0, 0));
+        ComboBox_Query.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ask Me" }));
+        ComboBox_Query.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ComboBox_QueryKeyReleased(evt);
+            }
+        });
+        Panel_Queries.add(ComboBox_Query, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 310, 30));
+
+        Panel_Main.add(Panel_Queries, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 760, 580));
 
         TextField_Search.setBackground(new java.awt.Color(240, 240, 240));
         TextField_Search.setBorder(null);
@@ -473,6 +518,32 @@ public class StartGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_TextField_SearchKeyReleased
+
+    private void ComboBox_QueryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboBox_QueryKeyReleased
+//fds        // TODO add your handling code here:
+        ArrayList<String> temp_lists = new ArrayList<String>();
+        ArrayList<String> temp_lists2 = new ArrayList<String>();
+        Iterator itr = queries.iterator();
+        String pre_name = (String)ComboBox_Query.getEditor().getItem();
+        if(!pre_name.equals("")){
+             while(itr.hasNext()){
+                String tt = (String) itr.next();
+                if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
+                    temp_lists.add(tt);
+                }
+                else
+                    temp_lists2.add(tt);
+            }
+        }
+        for (Object x : temp_lists2){
+            if (!temp_lists.contains(x))
+               temp_lists.add((String) x);
+         }
+        ComboBox_auto(temp_lists);
+        
+        
+        
+    }//GEN-LAST:event_ComboBox_QueryKeyReleased
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -529,8 +600,12 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JLabel B_Owners;
     private javax.swing.JLabel B_Players;
     private javax.swing.JLabel B_Search;
+    private javax.swing.JLabel B_SearchQuery;
     private javax.swing.JLabel B_Teams;
     private javax.swing.JLabel Bg;
+    private javax.swing.JComboBox ComboBox_Query;
+    private javax.swing.JComboBox ComboBox_Team;
+    private javax.swing.JComboBox ComboBox_Year;
     private javax.swing.JLabel Label_Buttons;
     private javax.swing.JLabel Label_Close;
     private javax.swing.JLabel Label_Image;
@@ -544,6 +619,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Main;
     private javax.swing.JPanel Panel_Person;
     private javax.swing.JPanel Panel_Person_Images;
+    private javax.swing.JPanel Panel_Queries;
     private javax.swing.JPanel Panel_Statistics;
     private javax.swing.JScrollPane ScrollPane_Owner;
     private javax.swing.JScrollPane ScrollPane_Player;
@@ -551,6 +627,7 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane_TeamData;
     private javax.swing.JTable Table_TeamData;
     private javax.swing.JTextField TextField_Search;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
     private JLabel label_player[][];
     private JLabel label_owner[][];
@@ -562,11 +639,19 @@ public class StartGUI extends javax.swing.JFrame {
     private String team_position[][];
     private int currentTab;
     ArrayList<String> lists_player,lists_owner,lists_team;
+    ArrayList<String> queries;
     
     private int row_col[][];//0-player,1-owner,2-team
     
     private void initMyComponents() throws IOException {
         int i;
+        queries=new ArrayList<String>( Arrays.asList( new String[]{"Bids", "Total Team Bid",
+            "Average Team Bid", "IPL Auction Dates, Venue",
+            "Retirements", "Replacements", "Trades", "Runs scored",
+            "Wickets Taken", "Number of Centuries", "Number of Fifties",
+            "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
+            "Bowling Strike Rate"} ) );
+        ComboBox_auto(queries);
         Label_Close.setVisible(false);
         Panel_Buttons.setVisible(false);
         ScrollPane_Player.setOpaque(false);
@@ -1142,5 +1227,21 @@ public class StartGUI extends javax.swing.JFrame {
             model.addRow(new Object[]{name_bid[j],bid});
         }
         ScrollPane_TeamData.setVisible(true);
+    }
+    public void ComboBox_auto(ArrayList<String> currentqueries){
+        ComboBox_Query.setModel(new javax.swing.DefaultComboBoxModel(currentqueries.toArray()));
+        /*Object[] ComboBox_QueryList = new Object[] { "Bids", "Total Team Bid",
+            "Average Team Bid", "IPL Auction Dates, Venue",
+            "Retirements", "Replacements", "Trades", "Runs scored",
+            "Wickets Taken", "Number of Centuries", "Number of Fifties",
+            "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
+            "Bowling Strike Rate"};
+        
+       for(int i=0;i<ComboBox_QueryList.length;i++){
+           ComboBox_Query.addItem(ComboBox_QueryList[i]);
+       }//*/
+        //AutoCompleteDecorator.decorate(this.ComboBox_Query);
+        //System.out.println("Is editable - " + 
+        //this.ComboBox_Query.isEditable() + ". Surprise!");
     }
 }
