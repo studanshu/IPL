@@ -258,7 +258,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Player.setViewportView(Panel_List);
 
-        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
+        Panel_Main.add(ScrollPane_Player, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 214, 350, 490));
 
         ScrollPane_Owner.setBorder(null);
         ScrollPane_Owner.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -283,7 +283,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Owner.setViewportView(Panel_List1);
 
-        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
+        Panel_Main.add(ScrollPane_Owner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 214, 350, 490));
 
         ScrollPane_Team.setBorder(null);
         ScrollPane_Team.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -308,7 +308,7 @@ public class StartGUI extends javax.swing.JFrame {
 
         ScrollPane_Team.setViewportView(Panel_List2);
 
-        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 490));
+        Panel_Main.add(ScrollPane_Team, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 214, 350, 490));
 
         Label_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/Close.png"))); // NOI18N
         Label_Close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -457,9 +457,7 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setViewportView(Table_TeamData);
         if (Table_TeamData.getColumnModel().getColumnCount() > 0) {
             Table_TeamData.getColumnModel().getColumn(0).setResizable(false);
-            Table_TeamData.getColumnModel().getColumn(0).setHeaderValue("Player");
             Table_TeamData.getColumnModel().getColumn(1).setResizable(false);
-            Table_TeamData.getColumnModel().getColumn(1).setHeaderValue("Bid (in $)");
         }
 
         Panel_Main.add(ScrollPane_TeamData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 349, 710, 300));
@@ -508,7 +506,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
-        Label_Close.setVisible(false);
         currentTab=0;
         Label_NotPlayed.setVisible(false);
     }//GEN-LAST:event_B_PlayersMouseClicked
@@ -521,7 +518,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
-        Label_Close.setVisible(false);
         Panel_Person_Images.removeAll();
         currentTab=1;
         Label_NotPlayed.setVisible(false);
@@ -535,7 +531,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
-        Label_Close.setVisible(false);
         Panel_Person_Images.removeAll();
         currentTab=2;
         Label_NotPlayed.setVisible(false);
@@ -606,13 +601,13 @@ public class StartGUI extends javax.swing.JFrame {
         else
             teamname = (String) ComboBox_Team.getSelectedItem();
         try{
-            Table_Entry_Query.setRowCount(0);
             switch(query_index){
                 case 0: initTableQuery(new String[]{"Player","Bid(in $)","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
                         rs= db.getHighestBids(teamname, year);
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{rs.getString("name"),
-                                Float.toString(rs.getFloat("bid_amount")),
+                                rs.getFloat("bid_amount"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -1456,7 +1451,19 @@ public class StartGUI extends javax.swing.JFrame {
     }
     
     private void initTableQuery(String columns[]){
-        Table_Query.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {},columns));
+        Table_Query.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {},columns)
+        {
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 1:
+                        return Integer.class;
+                    default:
+                        return String.class;
+                }
+            }
+        }
+        );
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
         centerRenderer.setOpaque(false);

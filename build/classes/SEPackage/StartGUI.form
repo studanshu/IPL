@@ -321,7 +321,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="210" width="350" height="490"/>
+              <AbsoluteConstraints x="0" y="214" width="350" height="490"/>
             </Constraint>
           </Constraints>
 
@@ -365,7 +365,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="210" width="350" height="490"/>
+              <AbsoluteConstraints x="0" y="214" width="350" height="490"/>
             </Constraint>
           </Constraints>
 
@@ -409,7 +409,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="210" width="350" height="490"/>
+              <AbsoluteConstraints x="0" y="214" width="350" height="490"/>
             </Constraint>
           </Constraints>
 
@@ -663,12 +663,12 @@
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title value="Player"/>
+                      <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title value="Bid (in $)"/>
+                      <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
