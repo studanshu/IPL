@@ -483,7 +483,7 @@ public class StartGUI extends javax.swing.JFrame {
         Label_NotPlayed.setText("Not Played");
         Panel_Main.add(Label_NotPlayed, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 790, 290));
 
-        Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/home_screen.png"))); // NOI18N
+        Bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/ipl_home copy_1.jpg"))); // NOI18N
         Bg.setAlignmentY(0.0F);
         Panel_Main.add(Bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1152, 700));
 
