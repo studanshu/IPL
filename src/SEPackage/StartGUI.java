@@ -116,7 +116,7 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Nationality = new javax.swing.JLabel();
         Label_Image = new javax.swing.JLabel();
         Label_Name = new javax.swing.JLabel();
-        Label_Team = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         Panel_Buttons = new javax.swing.JPanel();
         Label_Buttons = new javax.swing.JLabel();
         Panel_Statistics = new javax.swing.JPanel();
@@ -273,6 +273,19 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         Label_Name.setForeground(new java.awt.Color(102, 0, 0));
 
+        jPanel1.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 121, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 108, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
         Panel_Person.setLayout(Panel_PersonLayout);
         Panel_PersonLayout.setHorizontalGroup(
@@ -283,14 +296,14 @@ public class StartGUI extends javax.swing.JFrame {
                 .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
                         .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 80, Short.MAX_VALUE))
+                        .addGap(73, 90, Short.MAX_VALUE))
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
                         .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Label_Team, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         Panel_PersonLayout.setVerticalGroup(
             Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,15 +312,16 @@ public class StartGUI extends javax.swing.JFrame {
                     .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_PersonLayout.createSequentialGroup()
                         .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Team, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(Panel_PersonLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 81, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
@@ -415,7 +429,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Buttons.setVisible(false);
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
-        Label_Team.setIcon(null);
         Label_Close.setVisible(false);
     }//GEN-LAST:event_Label_CloseMouseClicked
 
@@ -428,7 +441,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
         Label_Close.setVisible(false);
-        Label_Team.setIcon(null);
         currentTab=0;
     }//GEN-LAST:event_B_PlayersMouseClicked
 
@@ -441,7 +453,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
         Label_Close.setVisible(false);
-        Label_Team.setIcon(null);
+        jPanel1.removeAll();
         currentTab=1;
     }//GEN-LAST:event_B_OwnersMouseClicked
 
@@ -454,7 +466,7 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Statistics.setVisible(false);
         ScrollPane_TeamData.setVisible(false);
         Label_Close.setVisible(false);
-        Label_Team.setIcon(null);
+        jPanel1.removeAll();
         currentTab=2;
     }//GEN-LAST:event_B_TeamsMouseClicked
 
@@ -558,7 +570,6 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JLabel Label_Name;
     private javax.swing.JLabel Label_Nationality;
     private javax.swing.JLabel Label_Sex;
-    private javax.swing.JLabel Label_Team;
     private javax.swing.JPanel Panel_Buttons;
     private javax.swing.JPanel Panel_List;
     private javax.swing.JPanel Panel_List1;
@@ -572,11 +583,13 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane_TeamData;
     private javax.swing.JTable Table_TeamData;
     private javax.swing.JTextField TextField_Search;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     private JLabel label_player[][];
     private JLabel label_owner[][];
     private JLabel label_team[][];
     private JLabel button_years[];
+    private JLabel Label_Team;
     private String player_position[][];
     private String owner_position[][];
     private String team_position[][];
@@ -671,8 +684,6 @@ public class StartGUI extends javax.swing.JFrame {
                 {
                     BufferedImage img = null;
                     img = ImageIO.read(new File(".\\Images_Player\\"+lists_player.get(count)));
-                    Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
-                    ImageIcon icon = new ImageIcon(dimg);
                     int posx,posy;
                     if(j==0)
                         posx=20;
@@ -745,8 +756,6 @@ public class StartGUI extends javax.swing.JFrame {
             {
                 BufferedImage img = null;
                 img = ImageIO.read(new File(".\\Images_Owner\\"+lists_owner.get(count)));
-                Image dimg = img.getScaledInstance(60, 60,Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
                 if(j==0)
                     posx=20;
@@ -816,8 +825,6 @@ public class StartGUI extends javax.swing.JFrame {
             {
                 BufferedImage img = null;
                 img = ImageIO.read(new File(".\\Images_Team\\"+lists_team.get(count)));
-                Image dimg = img.getScaledInstance(80, 80,Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(dimg);
                 int posx,posy;
                 if(j==0)
                     posx=20;
@@ -913,7 +920,7 @@ public class StartGUI extends javax.swing.JFrame {
     private void label_playerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         Label_Close.setVisible(true);
         Panel_Statistics.setVisible(false);
-        Label_Team.setIcon(null);
+        jPanel1.removeAll();
         Panel_Statistics.removeAll();
         BufferedImage img = null;
         Label_Nationality.setText("");
@@ -934,7 +941,7 @@ public class StartGUI extends javax.swing.JFrame {
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         Label_Close.setVisible(true);
         ScrollPane_TeamData.setVisible(false);
-        Label_Team.setIcon(null);
+        jPanel1.removeAll();
         BufferedImage img = null;
         String team="";
         Label_Nationality.setText("");
@@ -954,12 +961,18 @@ public class StartGUI extends javax.swing.JFrame {
         img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
         dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
         icon = new ImageIcon(dimg);
-        Label_Team.setIcon(icon);
+        JLabel Label_=new RoundedLabel(0,0,jPanel1.getWidth(), jPanel1.getHeight(),img);
+        Label_.setBounds(0,0,jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.removeAll();
+        jPanel1.add(Label_);
+        jPanel1.updateUI();
+        jPanel1.add(new JLabel("hi"));
+        jPanel1.setVisible(true);
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
         Label_Close.setVisible(true);
         ScrollPane_TeamData.setVisible(false);
-        Label_Team.setIcon(null);
+        jPanel1.removeAll();
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
@@ -1090,10 +1103,16 @@ public class StartGUI extends javax.swing.JFrame {
         String team="";
         while(rs.next())
             team=rs.getString("teamname");
+        System.out.println("team="+team);
         img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
         Image dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
-        Label_Team.setIcon(icon);
+        JLabel Label_=new RoundedLabel(0,0,jPanel1.getWidth(), jPanel1.getHeight(),img);
+        Label_.setBounds(0,0,jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.removeAll();
+        jPanel1.add(Label_);
+        jPanel1.updateUI();
+        jPanel1.setVisible(true);
         
         Panel_Statistics.updateUI();
         Panel_Statistics.setVisible(true);
@@ -1111,7 +1130,12 @@ public class StartGUI extends javax.swing.JFrame {
         Image img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
         Image dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
-        Label_Team.setIcon(icon);
+        JLabel Label_=new RoundedLabel(0,0,jPanel1.getWidth(), jPanel1.getHeight(),img);
+        Label_.setBounds(0,0,jPanel1.getWidth(), jPanel1.getHeight());
+        jPanel1.removeAll();
+        jPanel1.add(Label_);
+        jPanel1.updateUI();
+        jPanel1.setVisible(true);
         rs=db.getTeamBids(team,i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
@@ -1148,4 +1172,3 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setVisible(true);
     }
 }
-
