@@ -134,6 +134,18 @@ public class StartGUI extends javax.swing.JFrame {
         ComboBox_Query.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         ComboBox_Query.setForeground(new java.awt.Color(102, 0, 0));
         ComboBox_Query.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ask Me" }));
+        ComboBox_Query.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox_QueryActionPerformed(evt);
+            }
+        });
+        ComboBox_Query.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                ComboBox_QueryInputMethodTextChanged(evt);
+            }
+        });
         ComboBox_Query.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ComboBox_QueryKeyReleased(evt);
@@ -520,30 +532,16 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TextField_SearchKeyReleased
 
     private void ComboBox_QueryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboBox_QueryKeyReleased
-//fds        // TODO add your handling code here:
-        ArrayList<String> temp_lists = new ArrayList<String>();
-        ArrayList<String> temp_lists2 = new ArrayList<String>();
-        Iterator itr = queries.iterator();
-        String pre_name = (String)ComboBox_Query.getEditor().getItem();
-        if(!pre_name.equals("")){
-             while(itr.hasNext()){
-                String tt = (String) itr.next();
-                if((tt.toLowerCase()).startsWith(pre_name.toLowerCase())){
-                    temp_lists.add(tt);
-                }
-                else
-                    temp_lists2.add(tt);
-            }
-        }
-        for (Object x : temp_lists2){
-            if (!temp_lists.contains(x))
-               temp_lists.add((String) x);
-         }
-        ComboBox_auto(temp_lists);
-        
-        
-        
+
     }//GEN-LAST:event_ComboBox_QueryKeyReleased
+
+    private void ComboBox_QueryInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_ComboBox_QueryInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBox_QueryInputMethodTextChanged
+
+    private void ComboBox_QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_QueryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBox_QueryActionPerformed
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
@@ -652,6 +650,7 @@ public class StartGUI extends javax.swing.JFrame {
             "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
             "Bowling Strike Rate"} ) );
         ComboBox_auto(queries);
+        //Panel_Queries.setVisible(false);
         Label_Close.setVisible(false);
         Panel_Buttons.setVisible(false);
         ScrollPane_Player.setOpaque(false);
@@ -1230,18 +1229,6 @@ public class StartGUI extends javax.swing.JFrame {
     }
     public void ComboBox_auto(ArrayList<String> currentqueries){
         ComboBox_Query.setModel(new javax.swing.DefaultComboBoxModel(currentqueries.toArray()));
-        /*Object[] ComboBox_QueryList = new Object[] { "Bids", "Total Team Bid",
-            "Average Team Bid", "IPL Auction Dates, Venue",
-            "Retirements", "Replacements", "Trades", "Runs scored",
-            "Wickets Taken", "Number of Centuries", "Number of Fifties",
-            "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
-            "Bowling Strike Rate"};
-        
-       for(int i=0;i<ComboBox_QueryList.length;i++){
-           ComboBox_Query.addItem(ComboBox_QueryList[i]);
-       }//*/
-        //AutoCompleteDecorator.decorate(this.ComboBox_Query);
-        //System.out.println("Is editable - " + 
-        //this.ComboBox_Query.isEditable() + ". Surprise!");
+        AutoCompletion.enable(ComboBox_Query);
     }
 }
