@@ -54,39 +54,6 @@ public class StartGUI extends javax.swing.JFrame {
         initMyComponents();
         rs = null;
         db = new DatabaseConnection();
-        rs = db.getPlayerStatistics("Sachin Tendulkar", "2008");
-        try {
-            while(rs.next()){
-                String name = rs.getString("name");
-                int runs = rs.getInt(4);
-                int wickets = rs.getInt(5);
-                int num_of_innings = rs.getInt(6);
-                float bat_strikerate = rs.getFloat(7);
-                float bowl_strikerate = rs.getFloat(8);
-                float batting_average = rs.getFloat(9);
-                float bowling_average = rs.getFloat(10);
-                float economy = rs.getFloat(11);
-                int number_of_fifties = rs.getInt(12);
-                int number_of_centuries = rs.getInt(13);
-                float base_price = rs.getFloat(14);
-                
-                System.out.println("Person name : "+name);
-                System.out.println("Runs : "+Integer.toString(runs));
-                System.out.println("Wickets : "+Integer.toString(wickets));
-                System.out.println("Number of Innings : "+Integer.toString(num_of_innings));
-                System.out.println("Batting Strike rate : "+Float.toString(bat_strikerate));
-                System.out.println("Bowling Strike rate : "+Float.toString(bowl_strikerate));
-                System.out.println("Batting Average : "+Float.toString(batting_average));
-                System.out.println("Bowling Average : "+Float.toString(bowling_average));
-                System.out.println("Economy : "+Float.toString(economy));
-                System.out.println("Number of 50's : "+Integer.toString(number_of_fifties));
-                System.out.println("Number of 100's : "+Integer.toString(number_of_centuries));
-                System.out.println("Base Price : "+Float.toString(base_price));
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -363,7 +330,7 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setOpaque(false);
 
         Table_TeamData.setAutoCreateRowSorter(true);
-        Table_TeamData.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        Table_TeamData.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         Table_TeamData.setForeground(new java.awt.Color(102, 0, 0));
         Table_TeamData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -614,12 +581,17 @@ public class StartGUI extends javax.swing.JFrame {
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setOpaque(false);
         Table_TeamData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         Table_TeamData.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        
         Table_TeamData.getTableHeader().setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         Table_TeamData.getTableHeader().setForeground(Color.darkGray);
+        Table_TeamData.getTableHeader().setOpaque(false);
         ((DefaultTableCellRenderer)Table_TeamData.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)Table_TeamData.getTableHeader().getDefaultRenderer())
+                .setOpaque(false);
         row_col=new int[3][2];
         setPlayerScrollPanel();
         setOwnerScrollPanel();
@@ -856,7 +828,7 @@ public class StartGUI extends javax.swing.JFrame {
                 break;
             }
             initLabels(label_team,row_col[2][0],row_col[2][1],"team");
-            ScrollPane_Team.updateUI();
+        ScrollPane_Team.updateUI();
             ScrollPane_Team.setVisible(true);
             Panel_List2.updateUI();
             Panel_List2.setVisible(true);
