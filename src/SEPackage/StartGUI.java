@@ -110,6 +110,11 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Queries.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         B_SearchQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/search.png"))); // NOI18N
+        B_SearchQuery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_SearchQueryMouseClicked(evt);
+            }
+        });
         Panel_Queries.add(B_SearchQuery, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 100, 40));
 
         ComboBox_Team.setBackground(new java.awt.Color(102, 102, 102));
@@ -553,6 +558,146 @@ public class StartGUI extends javax.swing.JFrame {
     private void ComboBox_QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_QueryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBox_QueryActionPerformed
+
+    private void B_SearchQueryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_SearchQueryMouseClicked
+        // TODO add your handling code here:
+        int query_index = ComboBox_Query.getSelectedIndex();
+        int year_index = ComboBox_Year.getSelectedIndex();
+        int team_index = ComboBox_Team.getSelectedIndex();
+        String year,teamname;
+        if(year_index==0||year_index==1)
+            year="";
+        else
+            year = (String) ComboBox_Year.getSelectedItem();
+        if(team_index==0)
+            teamname="";
+        else
+            teamname = (String) ComboBox_Team.getSelectedItem();
+        try{
+            switch(query_index){
+                case 0: rs= db.getHighestBids(teamname, year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                Float.toString(rs.getFloat("bid_amount"));
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 1: rs= db.getHighestTeamSumBid(teamname, year);
+                        while(rs.next()){
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("sum"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 2: rs= db.getAverageBid(teamname, year);
+                        while(rs.next()){
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("avg"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 3: rs= db.IPLDatesAndVenue(year);
+                        while(rs.next()){
+                                rs.getString("venue");
+                                rs.getString("time");
+                                rs.getString("date");
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 4: rs= db.getRetirement(year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 5: rs= db.getReplacments(year);
+                        while(rs.next()){
+                                rs.getString("name1");
+                                rs.getString("name2");
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 6: rs= db.getTrades(year);
+                        while(rs.next()){
+                                rs.getString("name1");
+                                rs.getString("name2");
+                                rs.getString("team1");
+                                rs.getString("team2");
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 7: rs= db.getHighestRuns(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("runs"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 8: rs= db.getHighestWickets(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("wickets"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+
+                case 9: rs= db.getHighestCenturies(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("num_of_centuries"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                 case 10: rs= db.getHighestFifties(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Integer.toString(rs.getInt("num_of_fifties"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 11: rs= db.getHighestBatting_avg(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("batting_avg"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 12: rs= db.getHighestBowling_avg(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("bowling_avg"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 13: rs= db.getHighestBat_strike_rate(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("bat_strike_rate"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+                case 14: rs= db.getHighestBowl_strike_rate(teamname,year);
+                        while(rs.next()){
+                                rs.getString("name");
+                                rs.getString("teamname");
+                                Float.toString(rs.getFloat("bowl_strike_rate"));
+                                Integer.toString(rs.getInt("year"));
+                        }
+                        break;
+            }   
+        } catch (SQLException ex) {
+        Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_B_SearchQueryMouseClicked
     
     public ArrayList<String> listFilesForFolder(final File folder) {
         ArrayList<String> lists=new ArrayList<String>();
