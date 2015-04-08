@@ -73,6 +73,8 @@ public class StartGUI extends javax.swing.JFrame {
         ComboBox_Year = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         ComboBox_Query = new javax.swing.JComboBox();
+        ScrollPane_Query = new javax.swing.JScrollPane();
+        Table_Query = new javax.swing.JTable();
         TextField_Search = new javax.swing.JTextField();
         B_Search = new javax.swing.JLabel();
         B_Players = new javax.swing.JLabel();
@@ -157,6 +159,32 @@ public class StartGUI extends javax.swing.JFrame {
             }
         });
         Panel_Queries.add(ComboBox_Query, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 310, 30));
+
+        ScrollPane_Query.setOpaque(false);
+
+        Table_Query.setAutoCreateRowSorter(true);
+        Table_Query.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Table_Query.setForeground(new java.awt.Color(102, 0, 0));
+        Table_Query.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        Table_Query.setGridColor(new java.awt.Color(51, 0, 0));
+        Table_Query.setOpaque(false);
+        Table_Query.setRowHeight(35);
+        Table_Query.setRowSelectionAllowed(false);
+        Table_Query.setShowHorizontalLines(false);
+        Table_Query.setShowVerticalLines(false);
+        Table_Query.getTableHeader().setResizingAllowed(false);
+        Table_Query.getTableHeader().setReorderingAllowed(false);
+        Table_Query.setVerifyInputWhenFocusTarget(false);
+        ScrollPane_Query.setViewportView(Table_Query);
+
+        Panel_Queries.add(ScrollPane_Query, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 710, 300));
 
         Panel_Main.add(Panel_Queries, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 760, 580));
 
@@ -429,7 +457,9 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setViewportView(Table_TeamData);
         if (Table_TeamData.getColumnModel().getColumnCount() > 0) {
             Table_TeamData.getColumnModel().getColumn(0).setResizable(false);
+            Table_TeamData.getColumnModel().getColumn(0).setHeaderValue("Player");
             Table_TeamData.getColumnModel().getColumn(1).setResizable(false);
+            Table_TeamData.getColumnModel().getColumn(1).setHeaderValue("Bid (in $)");
         }
 
         Panel_Main.add(ScrollPane_TeamData, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 349, 710, 300));
@@ -467,6 +497,7 @@ public class StartGUI extends javax.swing.JFrame {
         Label_Close.setVisible(false);
         Panel_Queries.setVisible(true);
         Label_NotPlayed.setVisible(false);
+        ScrollPane_Query.setVisible(false);
     }//GEN-LAST:event_Label_CloseMouseClicked
 
     private void B_PlayersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PlayersMouseClicked
@@ -561,6 +592,7 @@ public class StartGUI extends javax.swing.JFrame {
 
     private void B_SearchQueryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_SearchQueryMouseClicked
         // TODO add your handling code here:
+        ScrollPane_Query.setVisible(true);
         int query_index = ComboBox_Query.getSelectedIndex();
         int year_index = ComboBox_Year.getSelectedIndex();
         int team_index = ComboBox_Team.getSelectedIndex();
@@ -574,14 +606,17 @@ public class StartGUI extends javax.swing.JFrame {
         else
             teamname = (String) ComboBox_Team.getSelectedItem();
         try{
+            Table_Entry_Query.setRowCount(0);
             switch(query_index){
-                case 0: rs= db.getHighestBids(teamname, year);
+                case 0: initTableQuery(new String[]{"Player","Bid(in $)","Team","Year"});
+                        rs= db.getHighestBids(teamname, year);
                         while(rs.next()){
-                                rs.getString("name");
-                                Float.toString(rs.getFloat("bid_amount"));
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{rs.getString("name"),
+                                Float.toString(rs.getFloat("bid_amount")),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
+                        System.out.println("exit");
                         break;
                 case 1: rs= db.getHighestTeamSumBid(teamname, year);
                         while(rs.next()){
@@ -693,7 +728,8 @@ public class StartGUI extends javax.swing.JFrame {
                                 Integer.toString(rs.getInt("year"));
                         }
                         break;
-            }   
+            
+            }
         } catch (SQLException ex) {
         Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -778,8 +814,10 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Statistics;
     private javax.swing.JScrollPane ScrollPane_Owner;
     private javax.swing.JScrollPane ScrollPane_Player;
+    private javax.swing.JScrollPane ScrollPane_Query;
     private javax.swing.JScrollPane ScrollPane_Team;
     private javax.swing.JScrollPane ScrollPane_TeamData;
+    private javax.swing.JTable Table_Query;
     private javax.swing.JTable Table_TeamData;
     private javax.swing.JTextField TextField_Search;
     private javax.swing.JLabel jLabel1;
@@ -793,6 +831,7 @@ public class StartGUI extends javax.swing.JFrame {
     private String owner_position[][];
     private String team_position[][];
     private int currentTab;
+    DefaultTableModel Table_Entry_Query;
     ArrayList<String> lists_player,lists_owner,lists_team;
     ArrayList<String> queries;
     
@@ -806,8 +845,9 @@ public class StartGUI extends javax.swing.JFrame {
             "Wickets Taken", "Number of Centuries", "Number of Fifties",
             "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
             "Bowling Strike Rate"} ) );
+        
         ComboBox_auto(queries);
-        //Panel_Queries.setVisible(false);
+        
         Label_Close.setVisible(false);
         Label_NotPlayed.setVisible(false);
         Panel_Buttons.setVisible(false);
@@ -820,13 +860,15 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_TeamData.setOpaque(false);
         ScrollPane_TeamData.getViewport().setOpaque(false);
         ScrollPane_TeamData.setVisible(false);
+        ScrollPane_Query.getViewport().setOpaque(false);
+        ScrollPane_Query.setVisible(false);
+        
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
         centerRenderer.setOpaque(false);
         Table_TeamData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         Table_TeamData.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        
         Table_TeamData.getTableHeader().setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         Table_TeamData.getTableHeader().setForeground(Color.darkGray);
         Table_TeamData.getTableHeader().setOpaque(false);
@@ -834,6 +876,8 @@ public class StartGUI extends javax.swing.JFrame {
                 .setHorizontalAlignment(JLabel.CENTER);
         ((DefaultTableCellRenderer)Table_TeamData.getTableHeader().getDefaultRenderer())
                 .setOpaque(false);
+        
+        
         row_col=new int[3][2];
         setPlayerScrollPanel();
         setOwnerScrollPanel();
@@ -1406,8 +1450,27 @@ public class StartGUI extends javax.swing.JFrame {
             ScrollPane_TeamData.setVisible(true);
         }
     }
-    public void ComboBox_auto(ArrayList<String> currentqueries){
+    private void ComboBox_auto(ArrayList<String> currentqueries){
         ComboBox_Query.setModel(new javax.swing.DefaultComboBoxModel(currentqueries.toArray()));
         AutoCompletion.enable(ComboBox_Query);
+    }
+    
+    private void initTableQuery(String columns[]){
+        Table_Query.setModel(new javax.swing.table.DefaultTableModel(new Object [][] {},columns));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setOpaque(false);
+        int i;
+        for(i=0;i<columns.length;i++)
+            Table_Query.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        Table_Query.getTableHeader().setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+        Table_Query.getTableHeader().setForeground(Color.darkGray);
+        Table_Query.getTableHeader().setOpaque(false);
+        ((DefaultTableCellRenderer)Table_Query.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)Table_Query.getTableHeader().getDefaultRenderer())
+                .setOpaque(false);
+        Table_Entry_Query=(DefaultTableModel)Table_Query.getModel();
+        
     }
 }
