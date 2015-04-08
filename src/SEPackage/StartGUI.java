@@ -67,6 +67,14 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_Main = new javax.swing.JPanel();
+        Panel_Person = new javax.swing.JPanel();
+        Label_Sex = new javax.swing.JLabel();
+        Label_Nationality = new javax.swing.JLabel();
+        Label_ForeignPlayers = new javax.swing.JLabel();
+        Label_Image = new javax.swing.JLabel();
+        Label_Name = new javax.swing.JLabel();
+        Label_IndianPlayers = new javax.swing.JLabel();
+        Panel_Person_Images = new javax.swing.JPanel();
         Panel_Queries = new javax.swing.JPanel();
         B_SearchQuery = new javax.swing.JLabel();
         ComboBox_Team = new javax.swing.JComboBox();
@@ -87,12 +95,6 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_Team = new javax.swing.JScrollPane();
         Panel_List2 = new javax.swing.JPanel();
         Label_Close = new javax.swing.JLabel();
-        Panel_Person = new javax.swing.JPanel();
-        Label_Sex = new javax.swing.JLabel();
-        Label_Nationality = new javax.swing.JLabel();
-        Label_Image = new javax.swing.JLabel();
-        Label_Name = new javax.swing.JLabel();
-        Panel_Person_Images = new javax.swing.JPanel();
         Panel_Buttons = new javax.swing.JPanel();
         Label_Buttons = new javax.swing.JLabel();
         Panel_Statistics = new javax.swing.JPanel();
@@ -107,6 +109,83 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.setMinimumSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel_Person.setOpaque(false);
+
+        Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Sex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Nationality.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_ForeignPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        Label_ForeignPlayers.setForeground(new java.awt.Color(102, 0, 0));
+        Label_ForeignPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 30)); // NOI18N
+        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_IndianPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        Label_IndianPlayers.setForeground(new java.awt.Color(102, 0, 0));
+        Label_IndianPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Panel_Person_Images.setOpaque(false);
+
+        javax.swing.GroupLayout Panel_Person_ImagesLayout = new javax.swing.GroupLayout(Panel_Person_Images);
+        Panel_Person_Images.setLayout(Panel_Person_ImagesLayout);
+        Panel_Person_ImagesLayout.setHorizontalGroup(
+            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
+        );
+        Panel_Person_ImagesLayout.setVerticalGroup(
+            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 105, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
+        Panel_Person.setLayout(Panel_PersonLayout);
+        Panel_PersonLayout.setHorizontalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(Label_Nationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Label_Sex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        Panel_PersonLayout.setVerticalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                                .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
 
         Panel_Queries.setOpaque(false);
         Panel_Queries.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,70 +397,6 @@ public class StartGUI extends javax.swing.JFrame {
             }
         });
         Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 32, 32));
-
-        Panel_Person.setOpaque(false);
-
-        Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
-
-        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
-
-        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
-
-        Panel_Person_Images.setOpaque(false);
-
-        javax.swing.GroupLayout Panel_Person_ImagesLayout = new javax.swing.GroupLayout(Panel_Person_Images);
-        Panel_Person_Images.setLayout(Panel_Person_ImagesLayout);
-        Panel_Person_ImagesLayout.setHorizontalGroup(
-            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 121, Short.MAX_VALUE)
-        );
-        Panel_Person_ImagesLayout.setVerticalGroup(
-            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 108, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
-        Panel_Person.setLayout(Panel_PersonLayout);
-        Panel_PersonLayout.setHorizontalGroup(
-            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 90, Short.MAX_VALUE))
-                    .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
-        );
-        Panel_PersonLayout.setVerticalGroup(
-            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
 
         Panel_Buttons.setOpaque(false);
 
@@ -793,7 +808,9 @@ public class StartGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox ComboBox_Year;
     private javax.swing.JLabel Label_Buttons;
     private javax.swing.JLabel Label_Close;
+    private javax.swing.JLabel Label_ForeignPlayers;
     private javax.swing.JLabel Label_Image;
+    private javax.swing.JLabel Label_IndianPlayers;
     private javax.swing.JLabel Label_Name;
     private javax.swing.JLabel Label_Nationality;
     private javax.swing.JLabel Label_NotPlayed;
@@ -1130,6 +1147,8 @@ public class StartGUI extends javax.swing.JFrame {
                     label[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                     label[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        Label_IndianPlayers.setText("");
+                        Label_ForeignPlayers.setText("");
                         Panel_Person.setVisible(true);
                         Panel_Buttons.setVisible(true);
                         if(option.equalsIgnoreCase("player"))
@@ -1145,6 +1164,8 @@ public class StartGUI extends javax.swing.JFrame {
                         else if(option.equalsIgnoreCase("owner"))
                         {
                             try {
+                                Label_IndianPlayers.setText("");
+                                Label_ForeignPlayers.setText("");
                                 label_ownerMouseClicked(evt,i_,j_);
                             } catch (IOException ex) {
                                 Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1155,6 +1176,8 @@ public class StartGUI extends javax.swing.JFrame {
                         else
                         {
                             try {
+                                Label_IndianPlayers.setText("");
+                                Label_ForeignPlayers.setText("");
                                 label_teamMouseClicked(evt,i_,j_);
                             } catch (IOException ex) {
                                 Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1179,8 +1202,10 @@ public class StartGUI extends javax.swing.JFrame {
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
+        Label_ForeignPlayers.setText("");
+        Label_IndianPlayers.setText("");
         img = ImageIO.read(new File(".\\Images_Player\\"+lists_player.get(i*3+j)));
-        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(Label_Image.getWidth(), Label_Image.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(player_position[i][j]);
         Label_Image.setIcon(icon);
@@ -1191,6 +1216,12 @@ public class StartGUI extends javax.swing.JFrame {
             Label_Nationality.setText(rs.getString("nationality"));
             Label_Sex.setText(rs.getString("sex"));
         }
+        rs=db.getJoiningYear(player_position[i][j]);
+        while(rs.next())
+            Label_IndianPlayers.setText("Join : "+rs.getString("year"));
+        rs=db.getRetirementYear(player_position[i][j]);
+        while(rs.next())
+            Label_ForeignPlayers.setText("Retirement : "+rs.getString("year"));
     }
     private void label_ownerMouseClicked(MouseEvent evt, int i, int j) throws IOException, SQLException {
         Panel_Queries.setVisible(false);
@@ -1201,6 +1232,8 @@ public class StartGUI extends javax.swing.JFrame {
         String team="";
         Label_Nationality.setText("");
         Label_Sex.setText("");
+        Label_ForeignPlayers.setText("");
+        Label_IndianPlayers.setText("");
         img = ImageIO.read(new File(".\\Images_Owner\\"+lists_owner.get(i*3+j)));
         Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
@@ -1223,6 +1256,8 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Person_Images.updateUI();
         Panel_Person_Images.add(new JLabel("hi"));
         Panel_Person_Images.setVisible(true);
+        Label_IndianPlayers.setText("");
+        Label_ForeignPlayers.setText("");
     }
     private void label_teamMouseClicked(MouseEvent evt, int i, int j) throws IOException {
         Panel_Queries.setVisible(false);
@@ -1232,11 +1267,16 @@ public class StartGUI extends javax.swing.JFrame {
         BufferedImage img = null;
         Label_Nationality.setText("");
         Label_Sex.setText("");
+        Label_ForeignPlayers.setText("");
+        Label_IndianPlayers.setText("");
         img = ImageIO.read(new File(".\\Images_Team\\"+lists_team.get(i*3+j)));
-        Image dimg = img.getScaledInstance(120, 140,Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(Label_Image.getWidth(),Label_Image.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(team_position[i][j]);
         Label_Image.setIcon(icon);
+        Label_IndianPlayers.setText("");
+        Label_ForeignPlayers.setText("");
+        
     }
     
     private void button_yearsMouseClicked(MouseEvent evt, int i) throws SQLException, IOException {
@@ -1424,14 +1464,23 @@ public class StartGUI extends javax.swing.JFrame {
     private void setupTeamStatistics(int i) throws SQLException {
         Label_NotPlayed.setVisible(true);
         ScrollPane_TeamData.setVisible(false);
+        Label_Sex.setText("");
+        Label_IndianPlayers.setText("");
+        Label_ForeignPlayers.setText("");
         String name_bid[]=new String[100];
         i+=2008;
         int cnt=0,j;
         rs=db.getCaptain(Label_Name.getText(), i+"");
-        String captain="";
+        String captain="",indian="",foreign="",homeground="";
         while(rs.next()){
             captain = rs.getString("captain_name");
+            indian = rs.getString("num_of_players");
+            foreign = rs.getString("num_of_foreign_players");
+            homeground = rs.getString("homeground");
         }
+        Label_Sex.setText(homeground);
+        Label_IndianPlayers.setText("Indian Players : "+indian);
+        Label_ForeignPlayers.setText("Foreign Players : "+foreign);
         System.out.println(Label_Name.getText());
         System.out.println(captain);
         rs=db.getTeam(Label_Name.getText(),i+"");
