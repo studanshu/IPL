@@ -67,14 +67,6 @@ public class StartGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Panel_Main = new javax.swing.JPanel();
-        Panel_Person = new javax.swing.JPanel();
-        Label_Sex = new javax.swing.JLabel();
-        Label_Nationality = new javax.swing.JLabel();
-        Label_ForeignPlayers = new javax.swing.JLabel();
-        Label_Image = new javax.swing.JLabel();
-        Label_Name = new javax.swing.JLabel();
-        Label_IndianPlayers = new javax.swing.JLabel();
-        Panel_Person_Images = new javax.swing.JPanel();
         Panel_Queries = new javax.swing.JPanel();
         B_SearchQuery = new javax.swing.JLabel();
         ComboBox_Team = new javax.swing.JComboBox();
@@ -95,6 +87,14 @@ public class StartGUI extends javax.swing.JFrame {
         ScrollPane_Team = new javax.swing.JScrollPane();
         Panel_List2 = new javax.swing.JPanel();
         Label_Close = new javax.swing.JLabel();
+        Panel_Person = new javax.swing.JPanel();
+        Label_Sex = new javax.swing.JLabel();
+        Label_Nationality = new javax.swing.JLabel();
+        Label_ForeignPlayers = new javax.swing.JLabel();
+        Label_Image = new javax.swing.JLabel();
+        Label_Name = new javax.swing.JLabel();
+        Label_IndianPlayers = new javax.swing.JLabel();
+        Panel_Person_Images = new javax.swing.JPanel();
         Panel_Buttons = new javax.swing.JPanel();
         Label_Buttons = new javax.swing.JLabel();
         Panel_Statistics = new javax.swing.JPanel();
@@ -109,83 +109,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Main.setMinimumSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setPreferredSize(new java.awt.Dimension(1152, 700));
         Panel_Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Panel_Person.setOpaque(false);
-
-        Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
-        Label_Sex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
-        Label_Nationality.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        Label_ForeignPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        Label_ForeignPlayers.setForeground(new java.awt.Color(102, 0, 0));
-        Label_ForeignPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 30)); // NOI18N
-        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
-        Label_Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        Label_IndianPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        Label_IndianPlayers.setForeground(new java.awt.Color(102, 0, 0));
-        Label_IndianPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        Panel_Person_Images.setOpaque(false);
-
-        javax.swing.GroupLayout Panel_Person_ImagesLayout = new javax.swing.GroupLayout(Panel_Person_Images);
-        Panel_Person_Images.setLayout(Panel_Person_ImagesLayout);
-        Panel_Person_ImagesLayout.setHorizontalGroup(
-            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 134, Short.MAX_VALUE)
-        );
-        Panel_Person_ImagesLayout.setVerticalGroup(
-            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 105, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
-        Panel_Person.setLayout(Panel_PersonLayout);
-        Panel_PersonLayout.setHorizontalGroup(
-            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                            .addComponent(Label_Nationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Sex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        Panel_PersonLayout.setVerticalGroup(
-            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_PersonLayout.createSequentialGroup()
-                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel_PersonLayout.createSequentialGroup()
-                                .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
 
         Panel_Queries.setOpaque(false);
         Panel_Queries.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -398,6 +321,83 @@ public class StartGUI extends javax.swing.JFrame {
         });
         Panel_Main.add(Label_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 160, 32, 32));
 
+        Panel_Person.setOpaque(false);
+
+        Label_Sex.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Sex.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Sex.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_Nationality.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        Label_Nationality.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Nationality.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_ForeignPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        Label_ForeignPlayers.setForeground(new java.awt.Color(102, 0, 0));
+        Label_ForeignPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 30)); // NOI18N
+        Label_Name.setForeground(new java.awt.Color(102, 0, 0));
+        Label_Name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Label_IndianPlayers.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        Label_IndianPlayers.setForeground(new java.awt.Color(102, 0, 0));
+        Label_IndianPlayers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        Panel_Person_Images.setOpaque(false);
+
+        javax.swing.GroupLayout Panel_Person_ImagesLayout = new javax.swing.GroupLayout(Panel_Person_Images);
+        Panel_Person_Images.setLayout(Panel_Person_ImagesLayout);
+        Panel_Person_ImagesLayout.setHorizontalGroup(
+            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
+        );
+        Panel_Person_ImagesLayout.setVerticalGroup(
+            Panel_Person_ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 105, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout Panel_PersonLayout = new javax.swing.GroupLayout(Panel_Person);
+        Panel_Person.setLayout(Panel_PersonLayout);
+        Panel_PersonLayout.setHorizontalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                            .addComponent(Label_Nationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Label_Sex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        Panel_PersonLayout.setVerticalGroup(
+            Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_PersonLayout.createSequentialGroup()
+                        .addComponent(Label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(Panel_PersonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Panel_PersonLayout.createSequentialGroup()
+                                .addComponent(Label_Sex, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_IndianPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_ForeignPlayers, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Panel_Person_Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Label_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        Panel_Main.add(Panel_Person, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 620, 180));
+
         Panel_Buttons.setOpaque(false);
 
         Label_Buttons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SEPackage/image/buttons copy.png"))); // NOI18N
@@ -589,7 +589,7 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TextField_SearchKeyReleased
 
     private void ComboBox_QueryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboBox_QueryKeyReleased
-
+        
     }//GEN-LAST:event_ComboBox_QueryKeyReleased
 
     private void ComboBox_QueryInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_ComboBox_QueryInputMethodTextChanged
@@ -597,7 +597,17 @@ public class StartGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBox_QueryInputMethodTextChanged
 
     private void ComboBox_QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_QueryActionPerformed
-        // TODO add your handling code here:
+       if(ComboBox_Query.getSelectedIndex()==16)
+       {
+           ComboBox_Year.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"1","2","3","4","5","6","7"}));
+           ComboBox_Team.setVisible(false);
+       }
+       else
+       {
+           ComboBox_Year.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Year", "Overall", "2008", "2009", "2010", "2011", "2012", "2013", "2014" }));
+           ComboBox_Year.setBounds(360,140,90,22);
+           ComboBox_Team.setVisible(true);
+       }
     }//GEN-LAST:event_ComboBox_QueryActionPerformed
 
     private void B_SearchQueryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_SearchQueryMouseClicked
@@ -626,119 +636,172 @@ public class StartGUI extends javax.swing.JFrame {
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
-                        System.out.println("exit");
                         break;
-                case 1: rs= db.getHighestTeamSumBid(teamname, year);
+                case 1: initTableQuery(new String[]{"Team","Bid Sum(in $)"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getHighestTeamSumBid(teamname, year);
                         while(rs.next()){
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("sum"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{rs.getString("teamname"),
+                                rs.getFloat("sum")});
                         }
                         break;
-                case 2: rs= db.getAverageBid(teamname, year);
+                case 2: initTableQuery(new String[]{"Team","Avg. Bid (in $)"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getAverageBid(teamname, year);
                         while(rs.next()){
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("avg"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{rs.getString("teamname"),
+                                rs.getFloat("avg")});
                         }
                         break;
-                case 3: rs= db.IPLDatesAndVenue(year);
+                case 3: initTableQuery(new String[]{"Venue","Time","Date","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.IPLDatesAndVenue(year);
                         while(rs.next()){
-                                rs.getString("venue");
-                                rs.getString("time");
-                                rs.getString("date");
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("venue"),
+                                rs.getTime("time").toString(),
+                                rs.getDate("dates").toString(),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 4: rs= db.getRetirement(year);
+                case 4: initTableQuery(new String[]{"Player","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getRetirement(year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 5: rs= db.getReplacments(year);
+                case 5: initTableQuery(new String[]{"Old Player","New Player","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getReplacments(year);
                         while(rs.next()){
-                                rs.getString("name1");
-                                rs.getString("name2");
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name1"),
+                                rs.getString("name2"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 6: rs= db.getTrades(year);
+                case 6: initTableQuery(new String[]{"Player A","Player B","Team A","Team B","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getTrades(year);
                         while(rs.next()){
-                                rs.getString("name1");
-                                rs.getString("name2");
-                                rs.getString("team1");
-                                rs.getString("team2");
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name1"),
+                                rs.getString("name2"),
+                                rs.getString("teamname1"),
+                                rs.getString("teamname2"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 7: rs= db.getHighestRuns(teamname,year);
+                case 7: initTableQuery(new String[]{"Player","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getUnsoldPlayers(year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("runs"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{rs.getString("name"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 8: rs= db.getHighestWickets(teamname,year);
+                case 8: initTableQuery(new String[]{"Player","Runs","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getHighestRuns(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("wickets"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getInt("runs"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
+                        }
+                        break;
+                case 9: initTableQuery(new String[]{"Player","Wickets","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getHighestWickets(teamname,year);
+                        while(rs.next()){
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getInt("wickets"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
 
-                case 9: rs= db.getHighestCenturies(teamname,year);
+                case 10: initTableQuery(new String[]{"Player","Centuries","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getHighestCenturies(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("num_of_centuries"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getInt("num_of_centuries"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                 case 10: rs= db.getHighestFifties(teamname,year);
+                 case 11: initTableQuery(new String[]{"Player","Fifties","Team","Year"});
+                        Table_Entry_Query.setRowCount(0); 
+                        rs= db.getHighestFifties(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Integer.toString(rs.getInt("num_of_fifties"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getInt("num_of_fifties"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 11: rs= db.getHighestBatting_avg(teamname,year);
+                case 12: initTableQuery(new String[]{"Player","Batting Average","Team","Year"});
+                        Table_Entry_Query.setRowCount(0); 
+                        rs= db.getHighestBatting_avg(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("batting_avg"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getFloat("batting_avg"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 12: rs= db.getHighestBowling_avg(teamname,year);
+                case 13: initTableQuery(new String[]{"Player","Bowling Average","Team","Year"});
+                        Table_Entry_Query.setRowCount(0); 
+                        rs= db.getHighestBowling_avg(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("bowling_avg"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getFloat("bowling_avg"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 13: rs= db.getHighestBat_strike_rate(teamname,year);
+                case 14: initTableQuery(new String[]{"Player","Batting Strike Rate","Team","Year"});
+                        Table_Entry_Query.setRowCount(0); 
+                        rs= db.getHighestBat_strike_rate(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("bat_strike_rate"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getFloat("bat_strike_rate"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-                case 14: rs= db.getHighestBowl_strike_rate(teamname,year);
+                case 15: initTableQuery(new String[]{"Player","Bowling Strike Rate","Team","Year"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getHighestBowl_strike_rate(teamname,year);
                         while(rs.next()){
-                                rs.getString("name");
-                                rs.getString("teamname");
-                                Float.toString(rs.getFloat("bowl_strike_rate"));
-                                Integer.toString(rs.getInt("year"));
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getFloat("bowl_strike_rate"),
+                                rs.getString("teamname"),
+                                Integer.toString(rs.getInt("year"))});
                         }
                         break;
-            
+                case 16: initTableQuery(new String[]{"Player","Team"});
+                        Table_Entry_Query.setRowCount(0);
+                        rs= db.getTeamBids(ComboBox_Year.getSelectedItem().toString());
+                        while(rs.next()){
+                                Table_Entry_Query.addRow(new Object[]{
+                                rs.getString("name"),
+                                rs.getString("teamname")});
+                        }
+                        break;
             }
         } catch (SQLException ex) {
         Logger.getLogger(StartGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -853,10 +916,10 @@ public class StartGUI extends javax.swing.JFrame {
         int i;
         queries=new ArrayList<String>( Arrays.asList( new String[]{"Bids", "Total Team Bid",
             "Average Team Bid", "IPL Auction Dates, Venue",
-            "Retirements", "Replacements", "Trades", "Runs scored",
+            "Retirements", "Replacements", "Trades","Unsold", "Runs scored",
             "Wickets Taken", "Number of Centuries", "Number of Fifties",
-            "Batting Avg", "Bowling Avg", "Batting Strike Rate", 
-            "Bowling Strike Rate"} ) );
+            "Batting Avg", "Bowling Avg", "Batting Strike Rate",
+            "Bowling Strike Rate","Players in Different Teams"} ) );
         
         ComboBox_auto(queries);
         
@@ -1239,13 +1302,21 @@ public class StartGUI extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(dimg);
         Label_Name.setText(owner_position[i][j]);
         Label_Image.setIcon(icon);
-        rs=db.getOwnerDetails(owner_position[i][j],"2008");
+        rs=db.getOwnerDetails(owner_position[i][j],"2011");
         while(rs.next())
         {
             Label_Nationality.setText("$ "+rs.getString("initial_cash"));
             Label_Sex.setText(rs.getString("sex"));
             team=rs.getString("teamname");
         }
+        rs=db.getOwnerDetails(owner_position[i][j],"2013");
+        while(rs.next())
+        {
+            Label_Nationality.setText("$ "+rs.getString("initial_cash"));
+            Label_Sex.setText(rs.getString("sex"));
+            team=rs.getString("teamname");
+        }
+        System.out.println("team="+team);
         img = ImageIO.read(new File(".\\Images_Team\\"+team+".jpg"));
         dimg = img.getScaledInstance(127, 101,Image.SCALE_SMOOTH);
         icon = new ImageIcon(dimg);

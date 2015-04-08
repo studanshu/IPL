@@ -206,10 +206,10 @@ public class DatabaseConnection {
    public ResultSet getTrades(String year){
        try{
            if(year!=""){
-                   resultSet = statement.executeQuery("select * from Trades natural join Person where year = "+year+" order by year;");
+                   resultSet = statement.executeQuery("select b.name as name1, c.name as name2, a.year, a.teamname1, a.teamname2 from Trades as a,Person as b, Person as c where a.pid1=b.pid and a.pid2=c.pid and year = "+year+" order by year;");
            }
            else{
-                   resultSet = statement.executeQuery("select * from Trades natural join Person order by year;");
+                   resultSet = statement.executeQuery("select b.name as name1, c.name as name2, a.year, a.teamname1, a.teamname2 from Trades as a,Person as b, Person as c where a.pid1=b.pid and a.pid2=c.pid order by year;");
            }
        } catch (SQLException e) {
            return null;
@@ -220,10 +220,10 @@ public class DatabaseConnection {
    public ResultSet getReplacments(String year){
        try{
            if(year!=""){
-                   resultSet = statement.executeQuery("select * from Replacements natural join Person where year = "+year+" order by year;");
+                   resultSet = statement.executeQuery("select b.name as name1, c.name as name2, a.year, a.teamname from Replacement as a,Person as b, Person as c where a.pid1=b.pid and a.pid2=c.pid and year = "+year+" order by year;");
            }
            else{
-                   resultSet = statement.executeQuery("select * from Replacements natural join Person order by year;");
+                   resultSet = statement.executeQuery("select b.name as name1, c.name as name2, a.year, a.teamname from Replacement as a,Person as b, Person as c where a.pid1=b.pid and a.pid2=c.pid order by year;");
            }
        } catch (SQLException e) {
            return null;
@@ -248,32 +248,14 @@ public class DatabaseConnection {
    public ResultSet getHighestRuns(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by runs desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by runs desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" order by runs desc;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-    public ResultSet getLowestRuns(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by runs;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by runs;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by runs desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -285,32 +267,14 @@ public class DatabaseConnection {
     public ResultSet getHighestWickets(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by wickets desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by wickets desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by wickets desc;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-    public ResultSet getLowestWickets(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by wickets;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by wickets;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by wickets desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -322,32 +286,14 @@ public class DatabaseConnection {
     public ResultSet getHighestCenturies(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by num_of_centuries desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by num_of_centuries desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by num_of_centuries desc;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-    public ResultSet getLowestCenturies(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by num_of_centuries;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by num_of_centuries;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by num_of_centuries desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -359,14 +305,14 @@ public class DatabaseConnection {
     public ResultSet getHighestFifties(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by num_of_fifties desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by num_of_fifties desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by num_of_fifties desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by num_of_fifties desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -374,110 +320,54 @@ public class DatabaseConnection {
         return resultSet;
     }
 
-    public ResultSet getLowestFifties(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by num_of_fifties;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by num_of_fifties;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-
+ 
     public ResultSet getHighestBatting_avg(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by batting_avg desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by batting_avg desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by batting_avg desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by batting_avg desc;");
                 } catch (SQLException e) {
                     return null;
                 }
             }
         return resultSet;
     }
-
-    public ResultSet getLowestBatting_avg(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by batting_avg;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by batting_avg;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
 
     public ResultSet getHighestBowling_avg(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bowling_avg desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by bowling_avg desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bowling_avg desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by bowling_avg desc;");
                 } catch (SQLException e) {
                     return null;
                 }
             }
         return resultSet;
     }
-
-    public ResultSet getLowestBowling_avg(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bowling_avg;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bowling_avg;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
 
     public ResultSet getHighestBat_strike_rate(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bat_strike_rate desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by bat_strike_rate desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bat_strike_rate desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by bat_strike_rate desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -485,56 +375,19 @@ public class DatabaseConnection {
         return resultSet;
     }
 
-    public ResultSet getLowestBat_strike_rate(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bat_strike_rate;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bat_strike_rate;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-
-
+ 
 
     public ResultSet getHighestBowl_strike_rate(String teamname,String year){
         if(!year.equals("")){
                 try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bowl_strike_rate desc;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" and year="+year+" order by bowl_strike_rate desc;");
                 } catch (SQLException e) {
                     return null;
                 }
         }
             else{
                     try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bowl_strike_rate desc;");
-                } catch (SQLException e) {
-                    return null;
-                }
-            }
-        return resultSet;
-    }
-
-    public ResultSet getLowestBowl_strike_rate(String teamname,String year){
-        if(!year.equals("")){
-                try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\" and year="+year+"order by bowl_strike_rate;");
-                } catch (SQLException e) {
-                    return null;
-                }
-        }
-            else{
-                    try{
-                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics where teamname like \""+teamname+"%\"order by bowl_strike_rate;");
+                    resultSet = statement.executeQuery("select * from Person natural join Player_statistics natural join TeamPlayer where teamname like \""+teamname+"%\" order by bowl_strike_rate desc;");
                 } catch (SQLException e) {
                     return null;
                 }
@@ -568,5 +421,25 @@ public class DatabaseConnection {
            return null;
        }
        return resultSet;
+    }
+    
+    
+     public ResultSet getUnsoldPlayers(String year){
+        if(!year.equals("")){
+                try{
+                    resultSet = statement.executeQuery("select * from unsold where year="+year+" order by year;");
+                } catch (SQLException e) {
+                    return null;
+                }
+        }
+            else{
+                    try{
+                    resultSet = statement.executeQuery("select * from unsold order by year;");
+
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        return resultSet;
     }
 }
