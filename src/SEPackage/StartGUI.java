@@ -1427,12 +1427,32 @@ public class StartGUI extends javax.swing.JFrame {
         String name_bid[]=new String[100];
         i+=2008;
         int cnt=0,j;
+        rs=db.getCaptain(Label_Name.getText(), i+"");
+        String captain="";
+        while(rs.next()){
+            captain = rs.getString("captain_name");
+        }
+        System.out.println(Label_Name.getText());
+        System.out.println(captain);
         rs=db.getTeam(Label_Name.getText(),i+"");
         DefaultTableModel model = (DefaultTableModel) Table_TeamData.getModel();
         model.setRowCount(0);
         while(rs.next()){
-                name_bid[cnt++] = rs.getString("name");
-                
+            String name = rs.getString("name");
+            if(rs.getInt("retained")==1){
+                if(captain.equalsIgnoreCase(name))
+                    name_bid[cnt++] = name+"(c) (Retained)";
+                else
+                    name_bid[cnt++] = name+" (Retained)";
+            }
+            else{
+                if(captain.equalsIgnoreCase(name)){
+                    name_bid[cnt++] = rs.getString("name")+" (c)";
+                }
+                else
+                    name_bid[cnt++] = rs.getString("name");
+
+            }
         }
         for(j=0;j<cnt;j++)
         {

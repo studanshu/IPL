@@ -113,7 +113,7 @@ public class DatabaseConnection {
     
     public ResultSet getCaptain(String name,String year){
         try{
-            resultSet = statement.executeQuery("select * from Person natural join Team where teamname=\""+name+"\" and year="+year+";");
+            resultSet = statement.executeQuery("select * from Team where teamname=\""+name+"\" and year="+year+";");
         } catch (SQLException e) {
             return null;
         }
@@ -552,5 +552,21 @@ public class DatabaseConnection {
         return resultSet;
     }
 
-
+    public ResultSet getJoiningYear(String name){
+       try{
+           resultSet = statement.executeQuery("select * from Person natural join TeamPlayer where name like \""+name+"%\" order by year limit 1;");
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+    }
+    
+    public ResultSet getRetirementYear(String name){
+       try{
+           resultSet = statement.executeQuery("select * from Person natural join Retirement where name like \""+name+"%\";");
+       } catch (SQLException e) {
+           return null;
+       }
+       return resultSet;
+    }
 }
