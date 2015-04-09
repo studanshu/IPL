@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -632,7 +633,7 @@ public class StartGUI extends javax.swing.JFrame {
                         rs= db.getHighestBids(teamname, year);
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{rs.getString("name"),
-                                rs.getFloat("bid_amount"),
+                                rs.getDouble("bid_amount"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -642,7 +643,7 @@ public class StartGUI extends javax.swing.JFrame {
                         rs= db.getHighestTeamSumBid(teamname, year);
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{rs.getString("teamname"),
-                                rs.getFloat("sum")});
+                                rs.getDouble("sum")});
                         }
                         break;
                 case 2: initTableQuery(new String[]{"Team","Avg. Bid (in $)"});
@@ -650,7 +651,7 @@ public class StartGUI extends javax.swing.JFrame {
                         rs= db.getAverageBid(teamname, year);
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{rs.getString("teamname"),
-                                rs.getFloat("avg")});
+                                rs.getDouble("avg")});
                         }
                         break;
                 case 3: initTableQuery(new String[]{"Venue","Time","Date","Year"});
@@ -755,7 +756,7 @@ public class StartGUI extends javax.swing.JFrame {
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{
                                 rs.getString("name"),
-                                rs.getFloat("batting_avg"),
+                                rs.getDouble("batting_avg"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -766,7 +767,7 @@ public class StartGUI extends javax.swing.JFrame {
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{
                                 rs.getString("name"),
-                                rs.getFloat("bowling_avg"),
+                                rs.getDouble("bowling_avg"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -777,7 +778,7 @@ public class StartGUI extends javax.swing.JFrame {
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{
                                 rs.getString("name"),
-                                rs.getFloat("bat_strike_rate"),
+                                rs.getDouble("bat_strike_rate"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -788,7 +789,7 @@ public class StartGUI extends javax.swing.JFrame {
                         while(rs.next()){
                                 Table_Entry_Query.addRow(new Object[]{
                                 rs.getString("name"),
-                                rs.getFloat("bowl_strike_rate"),
+                                rs.getDouble("bowl_strike_rate"),
                                 rs.getString("teamname"),
                                 Integer.toString(rs.getInt("year"))});
                         }
@@ -909,7 +910,7 @@ public class StartGUI extends javax.swing.JFrame {
     DefaultTableModel Table_Entry_Query;
     ArrayList<String> lists_player,lists_owner,lists_team;
     ArrayList<String> queries;
-    
+    DecimalFormat formatter;
     private int row_col[][];//0-player,1-owner,2-team
     
     private void initMyComponents() throws IOException {
@@ -922,7 +923,7 @@ public class StartGUI extends javax.swing.JFrame {
             "Bowling Strike Rate","Players in Different Teams"} ) );
         
         ComboBox_auto(queries);
-        
+        formatter=new DecimalFormat("#,###.00");
         Label_Close.setVisible(false);
         Label_NotPlayed.setVisible(false);
         Panel_Buttons.setVisible(false);
@@ -1036,7 +1037,7 @@ public class StartGUI extends javax.swing.JFrame {
 
                     JLabel name=new JLabel(player_position[i][j],SwingConstants.CENTER);
                     name.setBounds(posx,posy+80,80,20);
-                    name.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+                    name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                     name.setForeground(Color.BLACK);
 
                     Panel_List.add(name);
@@ -1108,7 +1109,7 @@ public class StartGUI extends javax.swing.JFrame {
                 
                 JLabel name=new JLabel(owner_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx,posy+80,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                 name.setForeground(Color.BLACK);
                 
                 Panel_List1.add(name);
@@ -1177,7 +1178,7 @@ public class StartGUI extends javax.swing.JFrame {
                 
                 JLabel name=new JLabel(team_position[i][j],SwingConstants.CENTER);
                 name.setBounds(posx,posy+80,80,20);
-                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+                name.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
                 name.setForeground(Color.BLACK);
                 
                 Panel_List2.add(name);
@@ -1305,7 +1306,7 @@ public class StartGUI extends javax.swing.JFrame {
         rs=db.getOwnerDetails(owner_position[i][j],"2011");
         while(rs.next())
         {
-            Label_Nationality.setText("$ "+rs.getString("initial_cash"));
+            Label_Nationality.setText("$ "+formatter.format(Double.parseDouble(rs.getString("initial_cash"))));
             Label_Sex.setText(rs.getString("sex"));
             team=rs.getString("teamname");
         }
@@ -1325,7 +1326,6 @@ public class StartGUI extends javax.swing.JFrame {
         Panel_Person_Images.removeAll();
         Panel_Person_Images.add(Label_);
         Panel_Person_Images.updateUI();
-        Panel_Person_Images.add(new JLabel("hi"));
         Panel_Person_Images.setVisible(true);
         Label_IndianPlayers.setText("");
         Label_ForeignPlayers.setText("");
@@ -1380,14 +1380,14 @@ public class StartGUI extends javax.swing.JFrame {
                 int runs = rs.getInt(4);
                 int wickets = rs.getInt(5);
                 int num_of_innings = rs.getInt(6);
-                float bat_strikerate = rs.getFloat(7);
-                float bowl_strikerate = rs.getFloat(8);
-                float batting_average = rs.getFloat(9);
-                float bowling_average = rs.getFloat(10);
-                float economy = rs.getFloat(11);
+                double bat_strikerate = rs.getDouble(7);
+                double bowl_strikerate = rs.getDouble(8);
+                double batting_average = rs.getDouble(9);
+                double bowling_average = rs.getDouble(10);
+                double economy = rs.getDouble(11);
                 int number_of_fifties = rs.getInt(12);
                 int number_of_centuries = rs.getInt(13);
-                float base_price = rs.getFloat(14);
+                String base_price = rs.getString(14);
                 
                 data=new JLabel("Runs : "+Integer.toString(runs));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
@@ -1408,7 +1408,7 @@ public class StartGUI extends javax.swing.JFrame {
                 data.setBounds(x,y+offset,width,height);
                 
                 Panel_Statistics.add(data);
-                data=new JLabel("Economy : "+Float.toString(economy));
+                data=new JLabel("Economy : "+Double.toString(economy));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x+300,y+offset,width,height);
@@ -1416,28 +1416,28 @@ public class StartGUI extends javax.swing.JFrame {
                 
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Batting Strike rate : "+Float.toString(bat_strikerate));
+                data=new JLabel("Batting Strike rate : "+Double.toString(bat_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x,y+offset,width,height);
                 
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Bowling Strike rate : "+Float.toString(bowl_strikerate));
+                data=new JLabel("Bowling Strike rate : "+Double.toString(bowl_strikerate));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x+300,y+offset,width,height);
                 offset+=off;
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Batting Average : "+Float.toString(batting_average));
+                data=new JLabel("Batting Average : "+Double.toString(batting_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x,y+offset,width,height);
                 
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Bowling Average : "+Float.toString(bowling_average));
+                data=new JLabel("Bowling Average : "+Double.toString(bowling_average));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font));
                 data.setForeground(new java.awt.Color(102, 0, 0));
                 data.setBounds(x+300,y+offset,width,height);
@@ -1458,9 +1458,9 @@ public class StartGUI extends javax.swing.JFrame {
                 offset+=off;
 
                 Panel_Statistics.add(data);
-                data=new JLabel("Base Price : $"+Float.toString(base_price));
+                data=new JLabel("Base Price : $ "+formatter.format(Double.parseDouble(base_price)));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font+10));
-                data.setBounds(x-50,y+offset+10,width+100,height+100);
+                data.setBounds(x-50,y+offset+10,width+150,height+100);
                 data.setForeground(new java.awt.Color(102, 0, 0));
 
                 Panel_Statistics.add(data);
@@ -1477,12 +1477,12 @@ public class StartGUI extends javax.swing.JFrame {
         
         rs=db.getPlayerBid(Label_Name.getText(),i+"");
         while(rs.next()){
-                float bid = rs.getFloat("bid_amount");
+                String bid = rs.getString("bid_amount");
                 
-                data=new JLabel("Final Bid : $"+Float.toString(bid));
+                data=new JLabel("Final Bid : $ "+formatter.format(Double.parseDouble(bid)));
                 data.setFont(new java.awt.Font("Comic Sans MS", 0, font+10));
                 data.setForeground(new java.awt.Color(102, 0, 0));
-                data.setBounds(x+250,y+offset+10,width+100,height+100);
+                data.setBounds(x+250,y+offset+10,width+150,height+100);
                 Panel_Statistics.add(data);
         }
         Panel_Person_Images.removeAll();
